@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shedi-ai/shedi.git"
+    "url": "https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension.git"
   },
   "type": "module",
   "scripts": {

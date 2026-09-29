@@ -1,6 +1,6 @@
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
 [![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
@@ -71,7 +71,7 @@ Looking for a powerful AI browser agent without the $200/month price tag of Open
 To get the most recent version with all the latest features:
 
 1. **Download**
-    * Download the latest `shedi-ai.zip` file from the official Github [release page](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/releases).
+    * Download the latest `shedi-ai.zip` file from the official Github [release page](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/releases).
 
 2. **Install**:
     * Unzip `shedi-ai.zip`.
@@ -101,8 +101,8 @@ If you prefer to build Shedi AI yourself, follow these steps:
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser.git
-   cd shedi-ai-agentic-browser
+   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension.git
+   cd shedi-ai-agentic-browser-extension
    ```
 
 3. **Install Dependencies**:
@@ -183,7 +183,7 @@ Here are some powerful tasks you can accomplish with just a sentence:
 
 We're actively developing Shedi AI with exciting features on the horizon, welcome to join us! 
 
-Check out our detailed roadmap and upcoming features in our [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/discussions). 
+Check out our detailed roadmap and upcoming features in our [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions). 
 
 ## 🤝 Contributing
 
@@ -206,7 +206,7 @@ We believe in the power of open source and community collaboration.  Join us in 
 
 If you discover a security vulnerability, please **DO NOT** disclose it publicly through issues, pull requests, or discussions.
 
-Instead, please create a [GitHub Security Advisory](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/security/advisories/new) to report the vulnerability responsibly. This allows us to address the issue before it's publicly disclosed.
+Instead, please create a [GitHub Security Advisory](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/security/advisories/new) to report the vulnerability responsibly. This allows us to address the issue before it's publicly disclosed.
 
 We appreciate your help in keeping Shedi AI and its users safe!
 
@@ -216,7 +216,7 @@ Join our growing community of developers and users:
 
 - [Website](https://shedi.ai) - Product docs and updates
 - [Twitter](https://x.com/shedi_ai) - Follow for updates and announcements
-- [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/discussions) - Share ideas and ask questions
+- [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions) - Share ideas and ask questions
 
 ## 📄 License
 
