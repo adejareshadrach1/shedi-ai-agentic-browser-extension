@@ -18,13 +18,10 @@
   const ACCENT_DARK = '#2563eb';
   const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
 
-  const CURSOR_SVG =
-    '<svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M5 2.5 L5 19.5 L9.4 15.4 L12.6 21.8 L15.4 20.4 L12.2 14.2 L18.4 13.7 Z" ' +
-    'fill="#0b1220" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/></svg>';
-
   let root = null;
-  let cursor = null;
+  let ghost = null;
+  let ghostHalo = null;
+  let ghostDot = null;
   let ring = null;
   let chip = null;
   let hideTimer = null;
@@ -97,29 +94,63 @@
     chip.appendChild(dot);
     chip.appendChild(chipLabel);
 
-    cursor = document.createElement('div');
-    Object.assign(cursor.style, {
+    // Ghost pointer: a small solid dot wrapped in a soft, semi-transparent neon
+    // halo that pulses while the agent works. It glides between targets with a
+    // smooth cubic-bezier transition instead of the legacy arrow bitmap.
+    ghost = document.createElement('div');
+    Object.assign(ghost.style, {
       position: 'fixed',
       top: '0',
       left: '0',
+      width: '0px',
+      height: '0px',
       opacity: '0',
-      transition: 'transform 520ms ' + EASE + ', opacity 200ms ease',
-      filter: 'drop-shadow(0 3px 6px rgba(2,132,199,0.55))',
+      transition: 'transform 620ms ' + EASE + ', opacity 260ms ease',
       willChange: 'transform',
     });
-    cursor.innerHTML = CURSOR_SVG;
+
+    ghostHalo = document.createElement('div');
+    Object.assign(ghostHalo.style, {
+      position: 'absolute',
+      left: '-21px',
+      top: '-21px',
+      width: '42px',
+      height: '42px',
+      borderRadius: '999px',
+      background: 'radial-gradient(circle, rgba(14,165,233,0.28) 0%, rgba(14,165,233,0.10) 55%, transparent 72%)',
+      border: '1px solid rgba(14,165,233,0.45)',
+      boxShadow: '0 0 18px rgba(14,165,233,0.5), inset 0 0 12px rgba(14,165,233,0.25)',
+      animation: 'shediGhostHalo 2.1s ease-in-out infinite',
+    });
+
+    ghostDot = document.createElement('div');
+    Object.assign(ghostDot.style, {
+      position: 'absolute',
+      left: '-5px',
+      top: '-5px',
+      width: '10px',
+      height: '10px',
+      borderRadius: '999px',
+      background: ACCENT,
+      boxShadow: '0 0 0 2px rgba(255,255,255,0.85), 0 0 14px rgba(14,165,233,0.9)',
+    });
+
+    ghost.appendChild(ghostHalo);
+    ghost.appendChild(ghostDot);
 
     if (!document.getElementById('shedi-action-keyframes')) {
       const style = document.createElement('style');
       style.id = 'shedi-action-keyframes';
       style.textContent =
-        '@keyframes shediActionPulse{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}';
+        '@keyframes shediActionPulse{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}' +
+        '@keyframes shediGhostHalo{0%,100%{opacity:.6;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}' +
+        '@keyframes shediRipple{0%{opacity:.85;transform:translate(-50%,-50%) scale(.35)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}}';
       (document.head || document.documentElement).appendChild(style);
     }
 
     root.appendChild(ring);
     root.appendChild(chip);
-    root.appendChild(cursor);
+    root.appendChild(ghost);
     (document.body || document.documentElement).appendChild(root);
     return root;
   }
@@ -133,7 +164,7 @@
   }
 
   function paint() {
-    if (!root || !ring || !chip || !cursor) return;
+    if (!root || !ring || !chip || !ghost) return;
     const rect = resolveRect();
     if (!rect) return;
 
@@ -154,16 +185,37 @@
     if (chipTop < 6) chipTop = Math.min(y + h + 8, window.innerHeight - chipH - 6);
     chip.style.transform = 'translate(' + chipLeft + 'px,' + chipTop + 'px)';
 
-    const cw = cursor.offsetWidth || 20;
-    const ch = cursor.offsetHeight || 20;
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    cursor.style.transform = 'translate(' + (cx - cw * 0.22) + 'px,' + (cy - ch * 0.22) + 'px)';
+    ghost.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
   }
 
   function loop() {
     paint();
     rafId = window.requestAnimationFrame(loop);
+  }
+
+  // Expanding neon ring at (x, y): the click confirmation pulse.
+  function ripple(x, y) {
+    ensureRoot();
+    const el = document.createElement('div');
+    Object.assign(el.style, {
+      position: 'fixed',
+      left: x + 'px',
+      top: y + 'px',
+      width: '46px',
+      height: '46px',
+      borderRadius: '999px',
+      border: '2px solid rgba(14,165,233,0.85)',
+      boxShadow: '0 0 22px rgba(14,165,233,0.6)',
+      pointerEvents: 'none',
+      transform: 'translate(-50%, -50%) scale(0.35)',
+      animation: 'shediRipple 620ms cubic-bezier(0.22, 1, 0.36, 1) forwards',
+    });
+    root.appendChild(el);
+    window.setTimeout(() => {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, 660);
   }
 
   function show(args) {
@@ -201,13 +253,18 @@
     // snapping.
     ring.style.opacity = '0';
     chip.style.opacity = '0';
-    cursor.style.opacity = '0';
+    ghost.style.opacity = '0';
     void ring.offsetWidth;
 
     paint();
     ring.style.opacity = '1';
     chip.style.opacity = '1';
-    cursor.style.opacity = '1';
+    ghost.style.opacity = '1';
+
+    if (args.trigger) {
+      const r = currentRect;
+      ripple(r.left + r.width / 2, r.top + r.height / 2);
+    }
 
     if (rafId == null) loop();
 
@@ -228,7 +285,7 @@
     }
     if (ring) ring.style.opacity = '0';
     if (chip) chip.style.opacity = '0';
-    if (cursor) cursor.style.opacity = '0';
+    if (ghost) ghost.style.opacity = '0';
     targetEl = null;
     currentRect = null;
   }
@@ -239,12 +296,55 @@
     const el = root;
     if (el && el.parentNode) el.parentNode.removeChild(el);
     root = null;
-    cursor = null;
+    ghost = null;
+    ghostHalo = null;
+    ghostDot = null;
     ring = null;
     chip = null;
   }
 
-  window.__shediActionOverlay = { show, clear, destroy };
+  /**
+   * Glide the ghost pointer to an element (by index recorded during the DOM scan,
+   * by selector, or by coordinates) and optionally pulse a click ripple.
+   *
+   * @param {{index?: number, selector?: string, x?: number, y?: number,
+   *          label?: string, trigger?: boolean, duration?: number}} opts
+   */
+  function animatePointerTo(opts) {
+    if (!opts) return;
+    ensureRoot();
+
+    let rect = null;
+    let el = null;
+
+    if (typeof opts.index === 'number' && window.__shediHighlightTargets) {
+      el = window.__shediHighlightTargets[opts.index] || null;
+    }
+    if (!el && opts.selector) {
+      try {
+        el = document.querySelector(opts.selector);
+      } catch (e) {
+        el = null;
+      }
+    }
+    if (el && el.isConnected) {
+      const live = el.getBoundingClientRect();
+      if (live && (live.width || live.height)) rect = live;
+    }
+    if (!rect && typeof opts.x === 'number' && typeof opts.y === 'number') {
+      rect = { left: opts.x, top: opts.y, width: 0, height: 0 };
+    }
+    if (!rect) return;
+
+    show({
+      rect,
+      label: opts.label || 'Working',
+      trigger: !!opts.trigger,
+      duration: opts.duration || 3000,
+    });
+  }
+
+  window.__shediActionOverlay = { show, clear, destroy, animatePointerTo, ripple };
 })();
 
 window.buildDomTree = (

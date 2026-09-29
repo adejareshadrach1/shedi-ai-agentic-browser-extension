@@ -175,8 +175,28 @@ export default class Page {
   }
 
   async removeHighlight(): Promise<void> {
-    if (this._config.displayHighlights && this._validWebPage) {
+    // Always clean up: leftover indexed boxes from a vision run must not outlive the
+    // screenshot frame, so removal is not gated on the displayHighlights preference.
+    if (this._validWebPage) {
       await _removeHighlights(this._tabId);
+    }
+  }
+
+  /**
+   * Repaint the indexed SoM labels right before the vision capture frame.
+   *
+   * The DOM scan above already assigned highlight indexes; this second pass re-runs
+   * the tree build in indexed mode so the numbered overlay exists in the DOM for the
+   * screenshot only. The caller strips it immediately after the capture. Returns
+   * true when the overlay was painted, so the caller knows cleanup is required.
+   */
+  private async paintIndexedHighlightsForCapture(): Promise<boolean> {
+    try {
+      await this.getClickableElements(true, -1, true);
+      return true;
+    } catch (error) {
+      logger.warning('Unable to paint indexed highlights for capture:', error);
+      return false;
     }
   }
 
@@ -428,13 +448,10 @@ export default class Page {
     try {
       await this.removeHighlight();
 
-      // Get DOM content (equivalent to dom_service.get_clickable_elements)
-      // This part would need to be implemented based on your DomService logic
-      // showHighlightElements is true if either useVision or displayHighlights is true.
-      // Numbered highlights are only needed for vision screenshots; the default
-      // experience relies on the on-demand action overlay instead.
-      const displayHighlights = this._config.displayHighlights || useVision;
-      const content = await this.getClickableElements(displayHighlights, focusElement, useVision);
+      // "Clean Engine": the user always sees a clean page. Indexed SoM labels are
+      // painted only for the screenshot frame (see below); the DOM scan itself runs
+      // without painting anything.
+      const content = await this.getClickableElements(false, focusElement, useVision);
       if (!content) {
         logger.warning('Failed to get clickable elements');
         // Return last known good state if available
@@ -452,8 +469,23 @@ export default class Page {
         logger.debug('content.elementTree: not found');
       }
 
-      // Take screenshot if needed
-      const screenshot = useVision ? await this.takeScreenshot() : null;
+      // Take screenshot if needed. For vision runs, paint the indexed SoM labels
+      // immediately before capturing and strip them right after: the LLM receives
+      // the labeled blueprint, while the human never sees the numbered boxes.
+      let screenshot: string | null = null;
+      if (useVision) {
+        const painted = await this.paintIndexedHighlightsForCapture();
+        try {
+          screenshot = await this.takeScreenshot();
+        } finally {
+          // The human must never see the labeled frame: strip the SoM overlay
+          // immediately, even if the capture itself failed.
+          await this.removeHighlight();
+          if (!painted) {
+            logger.warning('Vision capture ran without indexed highlights');
+          }
+        }
+      }
       const [scrollY, visualViewportHeight, scrollHeight] = await this.getScrollInfo();
 
       // update the state

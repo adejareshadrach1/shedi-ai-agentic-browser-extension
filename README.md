@@ -1,6 +1,6 @@
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
 [![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
@@ -9,6 +9,8 @@
 ## 🌐 Shedi AI Agentic Browser Extension
 
 Shedi AI Agentic Browser Extension is an open-source AI web automation tool that runs in your browser, with flexible LLM options and a multi-agent system.
+
+Created, designed, and developed by **Adebola Shadrach Adejare**.
 
 
 ⬇️ Shedi AI is not published on the Chrome Web Store. Build it from this checkout using the source instructions below.
@@ -69,7 +71,7 @@ Looking for a powerful AI browser agent without the $200/month price tag of Open
 To get the most recent version with all the latest features:
 
 1. **Download**
-    * Download the latest `shedi-ai.zip` file from the official Github [release page](https://github.com/shedi-ai/shedi/releases).
+    * Download the latest `shedi-ai.zip` file from the official Github [release page](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/releases).
 
 2. **Install**:
     * Unzip `shedi-ai.zip`.
@@ -99,8 +101,8 @@ If you prefer to build Shedi AI yourself, follow these steps:
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/shedi-ai/shedi.git
-   cd shedi-ai
+   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser.git
+   cd shedi-ai-agentic-browser
    ```
 
 3. **Install Dependencies**:
@@ -181,7 +183,7 @@ Here are some powerful tasks you can accomplish with just a sentence:
 
 We're actively developing Shedi AI with exciting features on the horizon, welcome to join us! 
 
-Check out our detailed roadmap and upcoming features in our [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions). 
+Check out our detailed roadmap and upcoming features in our [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/discussions). 
 
 ## 🤝 Contributing
 
@@ -204,7 +206,7 @@ We believe in the power of open source and community collaboration.  Join us in 
 
 If you discover a security vulnerability, please **DO NOT** disclose it publicly through issues, pull requests, or discussions.
 
-Instead, please create a [GitHub Security Advisory](https://github.com/shedi-ai/shedi/security/advisories/new) to report the vulnerability responsibly. This allows us to address the issue before it's publicly disclosed.
+Instead, please create a [GitHub Security Advisory](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/security/advisories/new) to report the vulnerability responsibly. This allows us to address the issue before it's publicly disclosed.
 
 We appreciate your help in keeping Shedi AI and its users safe!
 
@@ -214,40 +216,12 @@ Join our growing community of developers and users:
 
 - [Website](https://shedi.ai) - Product docs and updates
 - [Twitter](https://x.com/shedi_ai) - Follow for updates and announcements
-- [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) - Share ideas and ask questions
-
-## 👏 Acknowledgments
-
-Shedi AI builds on top of other awesome open-source projects:
-
-- [Browser Use](https://github.com/browser-use/browser-use)
-- [Puppeteer](https://github.com/EmergenceAI/Agent-E)
-- [Chrome Extension Boilerplate](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite)
-- [LangChain](https://github.com/langchain-ai/langchainjs)
-
-Huge thanks to their creators and contributors!
+- [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser/discussions) - Share ideas and ask questions
 
 ## 📄 License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-Made with ❤️ by the Shedi AI Team. 
+Made with ❤️ by **Adebola Shadrach Adejare**.Like Shedi AI? Give us a star 🌟 and follow us on [X](https://x.com/shedi_ai)
 
-Like Shedi AI? Give us a star 🌟 and follow us on [X](https://x.com/shedi_ai)
-
-## 🔗 Our Other Products
-
-- [DSH Plugin Directory](https://dsh.directory/): Discover installable community plugins for DeepSeek Harness by category, popularity, and activity.
-
-## ⚠️ DISCLAIMER ON DERIVATIVE PROJECTS
-
-**We explicitly *DO NOT* endorse, support, or participate in any** projects involving cryptocurrencies, tokens, NFTs, or other blockchain-related applications **based on this codebase.**
-
-**Any such derivative projects are NOT Affiliated with, or maintained by, or in any way connected to the official Shedi AI project or its core team.**
-
-**We assume NO LIABILITY for any losses, damages, or issues arising from the use of third-party derivative projects. Users interact with these projects at their own risk.**
-
-**We reserve the right to publicly distance ourselves from any misuse or misleading use of our name, codebase, or brand.**
-
-We encourage open-source innovation but urge our community to be discerning and cautious. Please ensure you understand the risks before using any software or service built upon our codebase by independent developers.
 

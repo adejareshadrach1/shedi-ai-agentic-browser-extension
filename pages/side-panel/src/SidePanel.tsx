@@ -12,6 +12,7 @@ import ChatHistoryList from './components/ChatHistoryList';
 import BookmarkList from './components/BookmarkList';
 import AgentEmptyState from './components/AgentEmptyState';
 import WelcomePanel from './components/WelcomePanel';
+import AgentStatusBar, { type TimelineStep } from './components/AgentStatusBar';
 import { EventType, type AgentEvent, ExecutionState } from './types/event';
 import './SidePanel.css';
 
@@ -40,6 +41,8 @@ const SidePanel = () => {
   const [isReplaying, setIsReplaying] = useState(false);
   const [replayEnabled, setReplayEnabled] = useState(false);
   const sessionIdRef = useRef<string | null>(null);
+  const [agentActive, setAgentActive] = useState(false);
+  const [timelineSteps, setTimelineSteps] = useState<TimelineStep[]>([]);
   const isReplayingRef = useRef<boolean>(false);
   const portRef = useRef<chrome.runtime.Port | null>(null);
   const heartbeatIntervalRef = useRef<number | null>(null);
@@ -154,6 +157,30 @@ const SidePanel = () => {
       const content = data?.details;
       let skip = true;
       let displayProgress = false;
+
+      // Track the premium status bar: activation + human-readable timeline steps.
+      if (state === ExecutionState.TASK_START) {
+        setAgentActive(true);
+        setTimelineSteps([]);
+      } else if (
+        [ExecutionState.TASK_OK, ExecutionState.TASK_FAIL, ExecutionState.TASK_CANCEL, ExecutionState.TASK_PAUSE].includes(
+          state,
+        )
+      ) {
+        setAgentActive(false);
+      } else if (state === ExecutionState.STEP_START || state === ExecutionState.ACT_START) {
+        setTimelineSteps(prev =>
+          [
+            ...prev,
+            {
+              id: `${timestamp}-${actor}-${state}-${prev.length}`,
+              actor: String(actor),
+              content: content || '',
+              timestamp,
+            },
+          ].slice(-12),
+        );
+      }
 
       switch (actor) {
         case Actors.SYSTEM:
@@ -1006,11 +1033,11 @@ const SidePanel = () => {
     hasConfiguredModels === null ? 'bg-slate-400' : hasConfiguredModels ? 'bg-emerald-400' : 'bg-amber-400';
 
   return (
-    <div className={`h-screen overflow-hidden font-sans ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
+    <div className={`h-screen overflow-hidden font-sans ${isDarkMode ? 'bg-[#0B0F19]' : 'bg-slate-50'}`}>
       <div className={`flex h-full flex-col overflow-hidden ${isDarkMode ? 'text-slate-100' : 'text-slate-900'}`}>
         <header
           className={`flex items-center justify-between gap-3 border-b px-3.5 py-2.5 backdrop-blur-xl ${
-            isDarkMode ? 'border-white/5 bg-slate-900/80' : 'border-slate-200/70 bg-white/80'
+            isDarkMode ? 'border-white/5 bg-[#0f1524]/90' : 'border-slate-200/70 bg-white/80'
           }`}>
           <div className="flex min-w-0 items-center gap-2.5">
             {showHistory ? (
@@ -1086,6 +1113,9 @@ const SidePanel = () => {
             </button>
           </div>
         </header>
+        {!showHistory && hasConfiguredModels === true && (
+          <AgentStatusBar isDarkMode={isDarkMode} active={agentActive} steps={timelineSteps} />
+        )}
         {showHistory ? (
           <div className="flex-1 overflow-hidden">
             <ChatHistoryList
@@ -1141,7 +1171,7 @@ const SidePanel = () => {
 
                 <div
                   className={`border-t px-3 py-3 backdrop-blur-xl ${
-                    isDarkMode ? 'border-white/5 bg-slate-900/80' : 'border-slate-200/70 bg-white/80'
+                    isDarkMode ? 'border-white/5 bg-[#0f1524]/90' : 'border-slate-200/70 bg-white/80'
                   }`}>
                   <ChatInput
                     onSendMessage={handleSendMessage}
