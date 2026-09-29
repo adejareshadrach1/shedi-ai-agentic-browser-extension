@@ -1,7 +1,3 @@
-<p align="center">
-   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
-</p>
-
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
@@ -19,11 +15,6 @@ Shedi AI, tarayıcınızda çalışan açık kaynaklı bir yapay zeka tarayıcı
 👏 Topluluğa katılın: [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
 ❤️ Shedi AI’ı sevdiniz mi? Bize bir yıldız ⭐ verin ve yayılmasına yardımcı olun!
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
-<p><em>Shedi AI’ın çoklu ajan sistemi, HuggingFace'i gerçek zamanlı analiz ederken; Planner engellerle karşılaştığında akıllıca kendi kendini düzeltir ve Navigator’a yaklaşımını dinamik olarak ayarlamasını söyler—tüm bunlar yerel olarak tarayıcınızda gerçekleşir.</em></p>
-</div>
 
 ## 🔥Neden Shedi AI?
 

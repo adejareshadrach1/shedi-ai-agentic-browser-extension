@@ -1,5 +1,5 @@
 import { type ProviderConfig, type ModelConfig, ProviderTypeEnum } from '@extension/storage';
-import { ChatOpenAI, AzureChatOpenAI } from '@langchain/openai';
+import { ChatOpenAI, ChatOpenAICompletions, AzureChatOpenAI } from '@langchain/openai';
 import { ChatAnthropic } from '@langchain/anthropic';
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 import { ChatXAI } from '@langchain/xai';
@@ -11,17 +11,28 @@ import { ChatDeepSeek } from '@langchain/deepseek';
 
 const maxTokens = 1024 * 4;
 
-// Custom ChatLlama class to handle Llama API response format
-class ChatLlama extends ChatOpenAI {
+/**
+ * Custom ChatLlama class to handle the Llama API response format.
+ *
+ * Extends `ChatOpenAICompletions` (not `ChatOpenAI`): in @langchain/openai 0.6.x the
+ * facade `ChatOpenAI` delegates to an internal instance, so a `completionWithRetry`
+ * override on a subclass would never be called. The completions class declares the
+ * hook in its typings and invokes it directly, letting us transform responses.
+ */
+class ChatLlama extends ChatOpenAICompletions {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(args: any) {
     super(args);
   }
 
   // Override the completionWithRetry method to intercept and transform the response
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async completionWithRetry(request: any, options?: any): Promise<any> {
     try {
-      // Make the request using the parent's implementation
-      const response = await super.completionWithRetry(request, options);
+      // Make the request using the parent's implementation. The base declares two
+      // overloads (streaming/non-streaming); cast so either shape can be inspected.
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const response = (await super.completionWithRetry(request, options)) as any;
 
       // Check if this is a Llama API response format
       if (response?.completion_message?.content?.text) {

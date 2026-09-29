@@ -326,7 +326,7 @@ async function setupExecutor(taskId: string, task: string, browserContext: Brows
       maxFailures: generalSettings.maxFailures,
       maxActionsPerStep: generalSettings.maxActionsPerStep,
       useVision: generalSettings.useVision,
-      useVisionForPlanner: true,
+      useVisionForPlanner: generalSettings.useVisionForPlanner,
       planningInterval: generalSettings.planningInterval,
     },
     generalSettings: generalSettings,

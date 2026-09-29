@@ -1,8 +1,3 @@
-<p align="center">
-   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
-</p>
-
-
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
@@ -20,11 +15,6 @@ Shedi AI 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化工�
 👏 加入我們的 [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai) 社群
 
 ❤️ 喜歡 Shedi AI 嗎？請給我們一顆星星 🌟 並協助分享！
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
-<p><em>Shedi AI 的多代理系統即時分析 HuggingFace，其中 Planner 會在遇到障礙時自行修正，並動態指示 Navigator 調整做法——這一切都在本機瀏覽器中執行。</em></p>
-</div>
 
 ## 🔥 為什麼選擇 Shedi AI？
 

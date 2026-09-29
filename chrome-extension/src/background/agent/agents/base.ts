@@ -11,6 +11,10 @@ import { ProviderTypeEnum } from '@extension/storage';
 
 const logger = createLogger('agent');
 
+// Hard ceiling for a single LLM call. Without it a stalled/overloaded model leaves
+// the UI stuck on a step (e.g. "Planning...") until the user cancels the task.
+const LLM_CALL_TIMEOUT_MS = 180_000;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CallOptions = Record<string, any>;
 
@@ -118,6 +122,45 @@ export abstract class BaseAgent<T extends z.ZodType, M = unknown> {
     return true;
   }
 
+  /**
+   * Run an LLM call with a hard timeout. A per-call AbortController is merged with the
+   * task's controller so that both a user cancel and a timeout cancel the underlying
+   * request (including LangChain's internal retries).
+   */
+  private async invokeWithTimeout<T>(run: (signal: AbortSignal) => Promise<T>): Promise<T> {
+    const perCallController = new AbortController();
+    const taskSignal = this.context.controller.signal;
+
+    const propagateCancel = () => perCallController.abort();
+    if (taskSignal.aborted) {
+      propagateCancel();
+    } else {
+      taskSignal.addEventListener('abort', propagateCancel, { once: true });
+    }
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    const timeoutPromise = new Promise<never>((_, reject) => {
+      timeoutId = setTimeout(
+        () =>
+          reject(
+            new Error(
+              `LLM call timed out after ${LLM_CALL_TIMEOUT_MS / 1000}s (${this.modelName}). The model may be overloaded or unreachable.`,
+            ),
+          ),
+        LLM_CALL_TIMEOUT_MS,
+      );
+    });
+
+    try {
+      return await Promise.race([run(perCallController.signal), timeoutPromise]);
+    } finally {
+      clearTimeout(timeoutId);
+      taskSignal.removeEventListener('abort', propagateCancel);
+      // Cancel the underlying request if the timeout won the race; a no-op otherwise.
+      perCallController.abort();
+    }
+  }
+
   async invoke(inputMessages: BaseMessage[]): Promise<this['ModelOutput']> {
     // Use structured output
     if (this.withStructuredOutput) {
@@ -135,10 +178,12 @@ export abstract class BaseAgent<T extends z.ZodType, M = unknown> {
       let response = undefined;
       try {
         logger.debug(`[${this.modelName}] Invoking LLM with structured output...`);
-        response = await structuredLlm.invoke(inputMessages, {
-          signal: this.context.controller.signal,
-          ...this.callOptions,
-        });
+        response = await this.invokeWithTimeout(signal =>
+          structuredLlm.invoke(inputMessages, {
+            signal,
+            ...this.callOptions,
+          }),
+        );
 
         logger.debug(`[${this.modelName}] LLM response received:`, {
           hasParsed: !!response.parsed,
@@ -179,10 +224,12 @@ export abstract class BaseAgent<T extends z.ZodType, M = unknown> {
     const convertedInputMessages = convertInputMessages(inputMessages, this.modelName);
 
     try {
-      const response = await this.chatLLM.invoke(convertedInputMessages, {
-        signal: this.context.controller.signal,
-        ...this.callOptions,
-      });
+      const response = await this.invokeWithTimeout(signal =>
+        this.chatLLM.invoke(convertedInputMessages, {
+          signal,
+          ...this.callOptions,
+        }),
+      );
 
       if (typeof response.content === 'string') {
         const parsed = this.manuallyParseResponse(response.content);

@@ -1,8 +1,3 @@
-<p align="center">
-   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
-</p>
-
-
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
@@ -20,11 +15,6 @@ Shedi AI es una herramienta de automatización web con IA que se ejecuta en tu n
 👏 Únete a la comunidad en [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
 ❤️ ¿Te encanta Shedi AI? ¡Danos una estrella 🌟 y ayúdanos a correr la voz!
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
-<p><em>El sistema multiagente de Shedi AI analizando HuggingFace en tiempo real, con el Planner autocorrigiéndose de forma inteligente al enfrentar obstáculos e instruyendo dinámicamente al Navigator para ajustar su enfoque, todo ejecutándose localmente en tu navegador.</em></p>
-</div>
 
 ## 🔥 ¿Por qué usar Shedi AI?
 

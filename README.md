@@ -1,8 +1,3 @@
-<p align="center">
-   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
-</p>
-
-
 <div align="center">
 
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
@@ -22,11 +17,6 @@ Shedi AI Agentic Browser Extension is an open-source AI web automation tool that
 
 🌟 Loving Shedi AI? Give us a star  and help spread the word!
 
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
-<p><em>Shedi AI's multi-agent system analyzing HuggingFace in real-time, with the Planner intelligently self-correcting when encountering obstacles and dynamically instructing the Navigator to adjust its approach—all running locally in your browser.</em></p>
-</div>
 
 ## 🔥Why Shedi AI?
 
