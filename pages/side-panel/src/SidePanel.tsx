@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { RxDiscordLogo } from 'react-icons/rx';
-import { FiSettings } from 'react-icons/fi';
+import { FiSettings, FiArrowLeft } from 'react-icons/fi';
 import { PiPlusBold } from 'react-icons/pi';
 import { GrHistory } from 'react-icons/gr';
 import { type Message, Actors, chatHistoryStore, agentModelStore, generalSettingsStore } from '@extension/storage';
@@ -11,6 +10,8 @@ import MessageList from './components/MessageList';
 import ChatInput from './components/ChatInput';
 import ChatHistoryList from './components/ChatHistoryList';
 import BookmarkList from './components/BookmarkList';
+import AgentEmptyState from './components/AgentEmptyState';
+import WelcomePanel from './components/WelcomePanel';
 import { EventType, type AgentEvent, ExecutionState } from './types/event';
 import './SidePanel.css';
 
@@ -999,62 +1000,89 @@ const SidePanel = () => {
     }
   };
 
+  const statusLabel =
+    hasConfiguredModels === null ? t('status_checkingConfig') : hasConfiguredModels ? 'Ready' : 'Setup required';
+  const statusColor =
+    hasConfiguredModels === null ? 'bg-slate-400' : hasConfiguredModels ? 'bg-emerald-400' : 'bg-amber-400';
+
   return (
-    <div>
-      <div
-        className={`flex h-screen flex-col ${isDarkMode ? 'bg-slate-900' : "bg-[url('/bg.jpg')] bg-cover bg-no-repeat"} overflow-hidden border ${isDarkMode ? 'border-sky-800' : 'border-[rgb(186,230,253)]'} rounded-2xl`}>
-        <header className="header relative">
-          <div className="header-logo">
+    <div className={`h-screen overflow-hidden font-sans ${isDarkMode ? 'bg-slate-950' : 'bg-slate-50'}`}>
+      <div className={`flex h-full flex-col overflow-hidden ${isDarkMode ? 'text-slate-100' : 'text-slate-900'}`}>
+        <header
+          className={`flex items-center justify-between gap-3 border-b px-3.5 py-2.5 backdrop-blur-xl ${
+            isDarkMode ? 'border-white/5 bg-slate-900/80' : 'border-slate-200/70 bg-white/80'
+          }`}>
+          <div className="flex min-w-0 items-center gap-2.5">
             {showHistory ? (
               <button
                 type="button"
                 onClick={() => handleBackToChat(false)}
-                className={`${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
+                className={`inline-flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-medium transition-colors ${
+                  isDarkMode ? 'text-slate-300 hover:bg-white/5' : 'text-slate-600 hover:bg-slate-100'
+                }`}
                 aria-label={t('nav_back_a11y')}>
-                {t('nav_back')}
+                <FiArrowLeft className="size-4" />
+                {t('chat_history_title')}
               </button>
             ) : (
-              <img src="/icon-128.png" alt="Extension Logo" className="size-6" />
+              <>
+                <div className="relative flex size-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 shadow-lg shadow-sky-500/25">
+                  <img src="/icon-128.png" alt="Shedi AI" className="size-5" />
+                  <span
+                    className={`absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 ${
+                      isDarkMode ? 'border-slate-900' : 'border-white'
+                    } ${statusColor}`}
+                  />
+                </div>
+                <div className="flex min-w-0 flex-col leading-tight">
+                  <span className="truncate text-sm font-semibold tracking-tight">Shedi AI</span>
+                  <span className={`truncate text-[11px] ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                    {statusLabel}
+                  </span>
+                </div>
+              </>
             )}
           </div>
-          <div className="header-icons">
+          <div className="flex items-center gap-0.5">
             {!showHistory && (
               <>
                 <button
                   type="button"
                   onClick={handleNewChat}
-                  onKeyDown={e => e.key === 'Enter' && handleNewChat()}
-                  className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
+                  className={`rounded-lg p-2 transition-colors ${
+                    isDarkMode
+                      ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                      : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
                   aria-label={t('nav_newChat_a11y')}
                   tabIndex={0}>
-                  <PiPlusBold size={20} />
+                  <PiPlusBold size={18} />
                 </button>
                 <button
                   type="button"
                   onClick={handleLoadHistory}
-                  onKeyDown={e => e.key === 'Enter' && handleLoadHistory()}
-                  className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
+                  className={`rounded-lg p-2 transition-colors ${
+                    isDarkMode
+                      ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                      : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
                   aria-label={t('nav_loadHistory_a11y')}
                   tabIndex={0}>
-                  <GrHistory size={20} />
+                  <GrHistory size={18} />
                 </button>
               </>
             )}
-            <a
-              href="https://discord.gg/NN3ABHggMK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'}`}>
-              <RxDiscordLogo size={20} />
-            </a>
             <button
               type="button"
               onClick={() => chrome.runtime.openOptionsPage()}
-              onKeyDown={e => e.key === 'Enter' && chrome.runtime.openOptionsPage()}
-              className={`header-icon ${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-400 hover:text-sky-500'} cursor-pointer`}
+              className={`rounded-lg p-2 transition-colors ${
+                isDarkMode
+                  ? 'text-slate-300 hover:bg-white/5 hover:text-white'
+                  : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'
+              }`}
               aria-label={t('nav_settings_a11y')}
               tabIndex={0}>
-              <FiSettings size={20} />
+              <FiSettings size={18} />
             </button>
           </div>
         </header>
@@ -1071,79 +1099,29 @@ const SidePanel = () => {
           </div>
         ) : (
           <>
-            {/* Show loading state while checking model configuration */}
+            {/* Loading state while checking model configuration */}
             {hasConfiguredModels === null && (
               <div
-                className={`flex flex-1 items-center justify-center p-8 ${isDarkMode ? 'text-sky-300' : 'text-sky-600'}`}>
-                <div className="text-center">
-                  <div className="mx-auto mb-4 size-8 animate-spin rounded-full border-2 border-sky-400 border-t-transparent"></div>
-                  <p>{t('status_checkingConfig')}</p>
-                </div>
+                className={`flex flex-1 flex-col items-center justify-center gap-3 ${
+                  isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                }`}>
+                <div className="size-6 animate-spin rounded-full border-2 border-sky-400 border-t-transparent" />
+                <p className="text-xs font-medium">{t('status_checkingConfig')}</p>
               </div>
             )}
 
-            {/* Show setup message when no models are configured */}
-            {hasConfiguredModels === false && (
-              <div
-                className={`flex flex-1 items-center justify-center p-8 ${isDarkMode ? 'text-sky-300' : 'text-sky-600'}`}>
-                <div className="max-w-md text-center">
-                  <img src="/icon-128.png" alt="Nanobrowser Logo" className="mx-auto mb-4 size-12" />
-                  <h3 className={`mb-2 text-lg font-semibold ${isDarkMode ? 'text-sky-200' : 'text-sky-700'}`}>
-                    {t('welcome_title')}
-                  </h3>
-                  <p className="mb-4">{t('welcome_instruction')}</p>
-                  <button
-                    onClick={() => chrome.runtime.openOptionsPage()}
-                    className={`my-4 rounded-lg px-4 py-2 font-medium transition-colors ${
-                      isDarkMode ? 'bg-sky-600 text-white hover:bg-sky-700' : 'bg-sky-500 text-white hover:bg-sky-600'
-                    }`}>
-                    {t('welcome_openSettings')}
-                  </button>
-                  <div className="mt-4 text-sm opacity-75">
-                    <a
-                      href="https://github.com/nanobrowser/nanobrowser?tab=readme-ov-file#-quick-start"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-700 hover:text-sky-600'}`}>
-                      {t('welcome_quickStart')}
-                    </a>
-                    <span className="mx-2">•</span>
-                    <a
-                      href="https://discord.gg/NN3ABHggMK"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${isDarkMode ? 'text-sky-400 hover:text-sky-300' : 'text-sky-700 hover:text-sky-600'}`}>
-                      {t('welcome_joinCommunity')}
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
+            {/* First-run setup state */}
+            {hasConfiguredModels === false && <WelcomePanel isDarkMode={isDarkMode} />}
 
-            {/* Show normal chat interface when models are configured */}
+            {/* Agent console */}
             {hasConfiguredModels === true && (
-              <>
-                {messages.length === 0 && (
-                  <>
-                    <div
-                      className={`border-t ${isDarkMode ? 'border-sky-900' : 'border-sky-100'} mb-2 p-2 shadow-sm backdrop-blur-sm`}>
-                      <ChatInput
-                        onSendMessage={handleSendMessage}
-                        onStopTask={handleStopTask}
-                        onMicClick={handleMicClick}
-                        isRecording={isRecording}
-                        isProcessingSpeech={isProcessingSpeech}
-                        disabled={!inputEnabled || isHistoricalSession}
-                        showStopButton={showStopButton}
-                        setContent={setter => {
-                          setInputTextRef.current = setter;
-                        }}
-                        isDarkMode={isDarkMode}
-                        historicalSessionId={isHistoricalSession && replayEnabled ? currentSessionId : null}
-                        onReplay={handleReplay}
-                      />
-                    </div>
-                    <div className="flex-1 overflow-y-auto">
+              <div className="flex min-h-0 flex-1 flex-col">
+                <div className="scrollbar-gutter-stable min-h-0 flex-1 overflow-x-hidden overflow-y-auto">
+                  {messages.length === 0 ? (
+                    <>
+                      <div className="px-4 pt-6">
+                        <AgentEmptyState isDarkMode={isDarkMode} />
+                      </div>
                       <BookmarkList
                         bookmarks={favoritePrompts}
                         onBookmarkSelect={handleBookmarkSelect}
@@ -1152,37 +1130,36 @@ const SidePanel = () => {
                         onBookmarkReorder={handleBookmarkReorder}
                         isDarkMode={isDarkMode}
                       />
+                    </>
+                  ) : (
+                    <div className="px-3 py-3">
+                      <MessageList messages={messages} isDarkMode={isDarkMode} />
                     </div>
-                  </>
-                )}
-                {messages.length > 0 && (
-                  <div
-                    className={`scrollbar-gutter-stable flex-1 overflow-x-hidden overflow-y-scroll scroll-smooth p-2 ${isDarkMode ? 'bg-slate-900/80' : ''}`}>
-                    <MessageList messages={messages} isDarkMode={isDarkMode} />
-                    <div ref={messagesEndRef} />
-                  </div>
-                )}
-                {messages.length > 0 && (
-                  <div
-                    className={`border-t ${isDarkMode ? 'border-sky-900' : 'border-sky-100'} p-2 shadow-sm backdrop-blur-sm`}>
-                    <ChatInput
-                      onSendMessage={handleSendMessage}
-                      onStopTask={handleStopTask}
-                      onMicClick={handleMicClick}
-                      isRecording={isRecording}
-                      isProcessingSpeech={isProcessingSpeech}
-                      disabled={!inputEnabled || isHistoricalSession}
-                      showStopButton={showStopButton}
-                      setContent={setter => {
-                        setInputTextRef.current = setter;
-                      }}
-                      isDarkMode={isDarkMode}
-                      historicalSessionId={isHistoricalSession && replayEnabled ? currentSessionId : null}
-                      onReplay={handleReplay}
-                    />
-                  </div>
-                )}
-              </>
+                  )}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                <div
+                  className={`border-t px-3 py-3 backdrop-blur-xl ${
+                    isDarkMode ? 'border-white/5 bg-slate-900/80' : 'border-slate-200/70 bg-white/80'
+                  }`}>
+                  <ChatInput
+                    onSendMessage={handleSendMessage}
+                    onStopTask={handleStopTask}
+                    onMicClick={handleMicClick}
+                    isRecording={isRecording}
+                    isProcessingSpeech={isProcessingSpeech}
+                    disabled={!inputEnabled || isHistoricalSession}
+                    showStopButton={showStopButton}
+                    setContent={setter => {
+                      setInputTextRef.current = setter;
+                    }}
+                    isDarkMode={isDarkMode}
+                    historicalSessionId={isHistoricalSession && replayEnabled ? currentSessionId : null}
+                    onReplay={handleReplay}
+                  />
+                </div>
+              </div>
             )}
           </>
         )}

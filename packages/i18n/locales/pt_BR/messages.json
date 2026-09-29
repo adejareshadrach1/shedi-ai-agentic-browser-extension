@@ -1,11 +1,11 @@
 {
   "app_metadata_description": {
     "description": "Descrição da extensão",
-    "message": "Automatize tarefas da web com IA! NanoBrowser é uma extensão de código aberto para o navegador que permite extrair dados, preencher formulários e muito mais."
+    "message": "O Shedi AI automatiza tarefas da web com IA, ajudando você a extrair dados, preencher formulários e muito mais."
   },
   "app_metadata_name": {
     "description": "Nome da extensão",
-    "message": "Nanobrowser: Agente Web de IA e Automação"
+    "message": "Shedi AI Agentic Browser Extension"
   },
   "errors_unknown": {
     "message": "Ocorreu um erro desconhecido"
@@ -38,7 +38,7 @@
     "message": "Voltar para o chat"
   },
   "welcome_title": {
-    "message": "Bem-vindo ao Nanobrowser!"
+    "message": "Bem-vindo ao Shedi AI!"
   },
   "welcome_instruction": {
     "message": "Para começar, por favor, configure suas chaves de API na página de configurações."
@@ -167,7 +167,7 @@
     "message": "Ativar Entrada de Voz"
   },
   "permissions_microphone_description": {
-    "message": "O Nanobrowser precisa de acesso ao microfone para converter sua fala em texto."
+    "message": "O Shedi AI precisa de acesso ao microfone para converter sua fala em texto."
   },
   "permissions_microphone_grantButton": {
     "message": "Conceder Permissão ao Microfone"
@@ -239,10 +239,10 @@
     "message": "Usar capacidade de visão dos modelos de linguagem (consome mais tokens para melhores resultados)"
   },
   "options_general_displayHighlights": {
-    "message": "Mostrar Destaques"
+    "message": "Visuais de Atividade do Agente"
   },
   "options_general_displayHighlights_desc": {
-    "message": "Mostrar destaques visuais em elementos interativos (ex: botões, links, etc.)"
+    "message": "Mostrar o ponteiro e o anel de destino do Shedi na página enquanto o agente trabalha"
   },
   "options_general_planningInterval": {
     "message": "Frequência de Replanejamento"
@@ -343,6 +343,24 @@
   },
   "options_models_addNewProvider": {
     "message": "Adicionar Novo Provedor"
+  },
+  "options_models_update": {
+    "message": "Atualizar modelos"
+  },
+  "options_models_updating": {
+    "message": "Atualizando..."
+  },
+  "options_models_updateAll": {
+    "message": "Atualizar todos"
+  },
+  "options_models_updateHint": {
+    "message": "Buscar a lista de modelos mais recente deste provedor"
+  },
+  "options_models_updateFailed": {
+    "message": "Falha ao atualizar:"
+  },
+  "options_models_updateDone": {
+    "message": "Lista de modelos atualizada"
   },
   "options_models_providers_openaiCompatible": {
     "message": "Provedor de API compatível com OpenAI"

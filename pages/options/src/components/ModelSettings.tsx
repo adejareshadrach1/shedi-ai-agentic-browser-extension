@@ -8,6 +8,8 @@
  */
 import { useEffect, useState, useRef, useCallback } from 'react';
 import type { KeyboardEvent } from 'react';
+import { FiRefreshCw } from 'react-icons/fi';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { Button } from '@extension/ui';
 import {
   llmProviderStore,
@@ -22,6 +24,7 @@ import {
   type ProviderConfig,
 } from '@extension/storage';
 import { t } from '@extension/i18n';
+import { discoverModels, mergeModelNames } from '@src/utils/modelDiscovery';
 
 // Helper function to check if a model is an OpenAI reasoning model (O-series or GPT-5 models)
 function isOpenAIReasoningModel(modelName: string): boolean {
@@ -90,6 +93,11 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
   // State for model input handling
 
   const [selectedSpeechToTextModel, setSelectedSpeechToTextModel] = useState<string>('');
+
+  // Live model-list refresh state, keyed by provider id
+  const [updatingProvider, setUpdatingProvider] = useState<string | null>(null);
+  const [updateErrors, setUpdateErrors] = useState<Record<string, string>>({});
+  const [updateSuccess, setUpdateSuccess] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const loadProviders = async () => {
@@ -262,6 +270,63 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
 
     updateAvailableModels();
   }, [getAvailableModelsCallback]); // Only depends on the callback
+
+  /**
+   * Ask the provider for its current model list, merge it with the user's selection and
+   * persist it, so a single click is enough to pick up newly released models.
+   */
+  const handleUpdateModels = useCallback(
+    async (providerId: string) => {
+      const config = providers[providerId];
+      if (!config?.type) return;
+
+      setUpdatingProvider(providerId);
+      setUpdateErrors(prev => ({ ...prev, [providerId]: '' }));
+      setUpdateSuccess(prev => ({ ...prev, [providerId]: false }));
+
+      try {
+        const { models, error } = await discoverModels(providerId, config);
+        if (error) {
+          setUpdateErrors(prev => ({ ...prev, [providerId]: error }));
+          return;
+        }
+
+        const updatedConfig: ProviderConfig = {
+          ...config,
+          modelNames: mergeModelNames(config.modelNames ?? [], models),
+        };
+
+        await llmProviderStore.setProvider(providerId, updatedConfig);
+
+        setProviders(prev => ({ ...prev, [providerId]: updatedConfig }));
+        setProvidersFromStorage(prev => new Set(prev).add(providerId));
+        setModifiedProviders(prev => {
+          const next = new Set(prev);
+          next.delete(providerId);
+          return next;
+        });
+        setUpdateSuccess(prev => ({ ...prev, [providerId]: true }));
+
+        const allModels = await getAvailableModelsCallback();
+        setAvailableModels(allModels);
+      } catch (err) {
+        setUpdateErrors(prev => ({
+          ...prev,
+          [providerId]: err instanceof Error ? err.message : String(err),
+        }));
+      } finally {
+        setUpdatingProvider(null);
+      }
+    },
+    [providers, getAvailableModelsCallback],
+  );
+
+  const handleUpdateAllModels = useCallback(async () => {
+    // Sequential on purpose: avoids firing one request per provider simultaneously.
+    for (const providerId of Object.keys(providers)) {
+      await handleUpdateModels(providerId);
+    }
+  }, [providers, handleUpdateModels]);
 
   const handleApiKeyChange = (provider: string, apiKey: string, baseUrl?: string) => {
     setModifiedProviders(prev => new Set(prev).add(provider));
@@ -1129,9 +1194,32 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
       {/* LLM Providers Section */}
       <div
         className={`rounded-lg border ${isDarkMode ? 'border-slate-700 bg-slate-800' : 'border-blue-100 bg-gray-50'} p-6 text-left shadow-sm`}>
-        <h2 className={`mb-4 text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-          {t('options_models_providers_header')}
-        </h2>
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <h2 className={`text-xl font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+            {t('options_models_providers_header')}
+          </h2>
+          {Object.keys(providers).length > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                void handleUpdateAllModels();
+              }}
+              disabled={updatingProvider !== null}
+              title={t('options_models_updateHint')}
+              className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+                isDarkMode
+                  ? 'border-slate-600 bg-slate-700 text-blue-300 hover:bg-slate-600'
+                  : 'border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100'
+              }`}>
+              {updatingProvider !== null ? (
+                <AiOutlineLoading3Quarters className="size-3.5 animate-spin" />
+              ) : (
+                <FiRefreshCw className="size-3.5" />
+              )}
+              {updatingProvider !== null ? t('options_models_updating') : t('options_models_updateAll')}
+            </button>
+          )}
+        </div>
         <div className="space-y-6">
           {getSortedProviders().length === 0 ? (
             <div className="py-8 text-center text-gray-500">
@@ -1519,6 +1607,44 @@ export const ModelSettings = ({ isDarkMode = false }: ModelSettingsProps) => {
                             </>
                           )}
                           {/* === END: Conditional UI === */}
+
+                          {/* Refresh this provider's model list straight from its API */}
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                void handleUpdateModels(providerId);
+                              }}
+                              disabled={updatingProvider === providerId}
+                              className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+                                isDarkMode
+                                  ? 'border-slate-600 bg-slate-700 text-blue-300 hover:bg-slate-600'
+                                  : 'border-blue-200 bg-blue-50 text-blue-700 hover:bg-blue-100'
+                              }`}>
+                              {updatingProvider === providerId ? (
+                                <AiOutlineLoading3Quarters className="size-3 animate-spin" />
+                              ) : (
+                                <FiRefreshCw className="size-3" />
+                              )}
+                              {updatingProvider === providerId
+                                ? t('options_models_updating')
+                                : t('options_models_update')}
+                            </button>
+
+                            {updateErrors[providerId] ? (
+                              <span className={`text-xs ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>
+                                {t('options_models_updateFailed')} {updateErrors[providerId]}
+                              </span>
+                            ) : updateSuccess[providerId] ? (
+                              <span className={`text-xs ${isDarkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>
+                                {t('options_models_updateDone')}
+                              </span>
+                            ) : (
+                              <span className={`text-xs ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                {t('options_models_updateHint')}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       </div>
                     )}

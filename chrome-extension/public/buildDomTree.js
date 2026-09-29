@@ -1,17 +1,283 @@
+/**
+ * Shedi AI action overlay.
+ *
+ * Replaces the legacy Playwright-style "numbered rainbow grid" with the kind of
+ * on-page feedback modern agentic browsers (Comet, Manus) use: a pointer that
+ * glides to the target element, a soft glowing ring around it, and a small
+ * action chip ("Clicking", "Typing", ...). It is purely decorative: the overlay
+ * never intercepts pointer events, so page interaction is unaffected.
+ *
+ * Exposed as `window.__shediActionOverlay` so the extension can drive it from the
+ * background service worker via chrome.scripting.executeScript.
+ */
+(() => {
+  if (window.__shediActionOverlay) return;
+
+  const ROOT_ID = 'shedi-action-overlay';
+  const ACCENT = '#0ea5e9';
+  const ACCENT_DARK = '#2563eb';
+  const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
+  const CURSOR_SVG =
+    '<svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M5 2.5 L5 19.5 L9.4 15.4 L12.6 21.8 L15.4 20.4 L12.2 14.2 L18.4 13.7 Z" ' +
+    'fill="#0b1220" stroke="#ffffff" stroke-width="1.4" stroke-linejoin="round"/></svg>';
+
+  let root = null;
+  let cursor = null;
+  let ring = null;
+  let chip = null;
+  let hideTimer = null;
+  let rafId = null;
+  let targetEl = null;
+  let currentRect = null;
+
+  function ensureRoot() {
+    if (root && root.isConnected) return root;
+
+    root = document.createElement('div');
+    root.id = ROOT_ID;
+    root.setAttribute('aria-hidden', 'true');
+    Object.assign(root.style, {
+      position: 'fixed',
+      inset: '0',
+      pointerEvents: 'none',
+      zIndex: '2147483646',
+    });
+
+    ring = document.createElement('div');
+    Object.assign(ring.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '0px',
+      height: '0px',
+      border: '2px solid ' + ACCENT,
+      borderRadius: '10px',
+      boxSizing: 'border-box',
+      opacity: '0',
+      transformOrigin: 'top left',
+      boxShadow: '0 0 0 3px rgba(14,165,233,0.18), 0 0 26px rgba(14,165,233,0.45)',
+      transition: 'transform 420ms ' + EASE + ', width 420ms ' + EASE + ', height 420ms ' + EASE + ', opacity 220ms ease',
+      willChange: 'transform, width, height',
+    });
+
+    chip = document.createElement('div');
+    Object.assign(chip.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '6px',
+      padding: '4px 9px',
+      borderRadius: '999px',
+      background: 'linear-gradient(135deg, ' + ACCENT + ', ' + ACCENT_DARK + ')',
+      color: '#ffffff',
+      font: '600 11px/1.2 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+      letterSpacing: '0.01em',
+      whiteSpace: 'nowrap',
+      opacity: '0',
+      transition: 'transform 260ms ' + EASE + ', opacity 200ms ease',
+      boxShadow: '0 6px 22px rgba(2,132,199,0.45)',
+      willChange: 'transform',
+    });
+
+    const dot = document.createElement('span');
+    Object.assign(dot.style, {
+      width: '6px',
+      height: '6px',
+      borderRadius: '999px',
+      background: '#ffffff',
+      opacity: '0.9',
+      animation: 'shediActionPulse 1.1s ease-in-out infinite',
+    });
+    const chipLabel = document.createElement('span');
+    chipLabel.className = 'shedi-action-chip-label';
+    chip.appendChild(dot);
+    chip.appendChild(chipLabel);
+
+    cursor = document.createElement('div');
+    Object.assign(cursor.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      opacity: '0',
+      transition: 'transform 520ms ' + EASE + ', opacity 200ms ease',
+      filter: 'drop-shadow(0 3px 6px rgba(2,132,199,0.55))',
+      willChange: 'transform',
+    });
+    cursor.innerHTML = CURSOR_SVG;
+
+    if (!document.getElementById('shedi-action-keyframes')) {
+      const style = document.createElement('style');
+      style.id = 'shedi-action-keyframes';
+      style.textContent =
+        '@keyframes shediActionPulse{0%,100%{opacity:.55;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}';
+      (document.head || document.documentElement).appendChild(style);
+    }
+
+    root.appendChild(ring);
+    root.appendChild(chip);
+    root.appendChild(cursor);
+    (document.body || document.documentElement).appendChild(root);
+    return root;
+  }
+
+  function resolveRect() {
+    if (targetEl && targetEl.isConnected) {
+      const liveRect = targetEl.getBoundingClientRect();
+      if (liveRect && (liveRect.width || liveRect.height)) return liveRect;
+    }
+    return currentRect;
+  }
+
+  function paint() {
+    if (!root || !ring || !chip || !cursor) return;
+    const rect = resolveRect();
+    if (!rect) return;
+
+    const pad = 3;
+    const x = rect.left - pad;
+    const y = rect.top - pad;
+    const w = rect.width + pad * 2;
+    const h = rect.height + pad * 2;
+
+    ring.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    ring.style.width = w + 'px';
+    ring.style.height = h + 'px';
+
+    const chipW = chip.offsetWidth || 96;
+    const chipH = chip.offsetHeight || 22;
+    let chipLeft = Math.max(6, Math.min(x + w - chipW, window.innerWidth - chipW - 6));
+    let chipTop = y - chipH - 8;
+    if (chipTop < 6) chipTop = Math.min(y + h + 8, window.innerHeight - chipH - 6);
+    chip.style.transform = 'translate(' + chipLeft + 'px,' + chipTop + 'px)';
+
+    const cw = cursor.offsetWidth || 20;
+    const ch = cursor.offsetHeight || 20;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    cursor.style.transform = 'translate(' + (cx - cw * 0.22) + 'px,' + (cy - ch * 0.22) + 'px)';
+  }
+
+  function loop() {
+    paint();
+    rafId = window.requestAnimationFrame(loop);
+  }
+
+  function show(args) {
+    if (!args) return;
+    ensureRoot();
+
+    currentRect = args.rect || {
+      left: args.x || 0,
+      top: args.y || 0,
+      width: args.width || 0,
+      height: args.height || 0,
+    };
+
+    targetEl = null;
+    if (args.selector) {
+      try {
+        targetEl = document.querySelector(args.selector);
+      } catch (e) {
+        targetEl = null;
+      }
+    }
+    if (!targetEl && args.xpath) {
+      try {
+        const result = document.evaluate(args.xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+        targetEl = result.singleNodeValue instanceof Element ? result.singleNodeValue : null;
+      } catch (e) {
+        targetEl = null;
+      }
+    }
+
+    const labelEl = chip.querySelector('.shedi-action-chip-label');
+    if (labelEl) labelEl.textContent = args.label || 'Working';
+
+    // Fade out first so the pointer glides from its previous position instead of
+    // snapping.
+    ring.style.opacity = '0';
+    chip.style.opacity = '0';
+    cursor.style.opacity = '0';
+    void ring.offsetWidth;
+
+    paint();
+    ring.style.opacity = '1';
+    chip.style.opacity = '1';
+    cursor.style.opacity = '1';
+
+    if (rafId == null) loop();
+
+    if (hideTimer) clearTimeout(hideTimer);
+    hideTimer = window.setTimeout(clear, args.duration || 4200);
+  }
+
+  // Hide the overlay but keep the nodes around: the pointer then glides from its
+  // previous position to the next target, like Comet/Manus do.
+  function clear() {
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+    if (rafId != null) {
+      window.cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    if (ring) ring.style.opacity = '0';
+    if (chip) chip.style.opacity = '0';
+    if (cursor) cursor.style.opacity = '0';
+    targetEl = null;
+    currentRect = null;
+  }
+
+  // Full teardown, used when highlights are explicitly removed.
+  function destroy() {
+    clear();
+    const el = root;
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+    root = null;
+    cursor = null;
+    ring = null;
+    chip = null;
+  }
+
+  window.__shediActionOverlay = { show, clear, destroy };
+})();
+
 window.buildDomTree = (
   args = {
     showHighlightElements: true,
     focusHighlightIndex: -1,
     viewportExpansion: 0,
     debugMode: false,
+    highlightMode: 'action',
     startId: 0,
     startHighlightIndex: 0,
   },
 ) => {
-  const { showHighlightElements, focusHighlightIndex, viewportExpansion, startHighlightIndex, startId, debugMode } =
-    args;
+  const {
+    showHighlightElements,
+    focusHighlightIndex,
+    viewportExpansion,
+    startHighlightIndex,
+    startId,
+    debugMode,
+    highlightMode = 'action',
+  } = args;
+  // "indexed" keeps the legacy numbered overlay (used for vision/debug); the
+  // default "action" mode paints nothing here and relies on the action overlay.
+  const indexedHighlightMode = highlightMode === 'indexed';
   // Make sure to do highlight elements always, but we can hide the highlights if needed
   const doHighlightElements = true;
+
+  // Drop any leftover grid from a previous indexed run.
+  if (!indexedHighlightMode) {
+    const staleContainer = document.getElementById('playwright-highlight-container');
+    if (staleContainer) staleContainer.remove();
+  }
 
   let highlightIndex = startHighlightIndex; // Reset highlight index
 
@@ -125,6 +391,14 @@ window.buildDomTree = (
   function highlightElement(element, index, parentIframe = null) {
     if (!element) return index;
 
+    if (!indexedHighlightMode) {
+      // Nothing is painted for interactive elements any more. We only remember
+      // the mapping so the action overlay can resolve a target by index.
+      window.__shediHighlightTargets = window.__shediHighlightTargets || {};
+      window.__shediHighlightTargets[index] = element;
+      return index + 1;
+    }
+
     const overlays = [];
     /**
      * @type {HTMLElement | null}
@@ -159,21 +433,9 @@ window.buildDomTree = (
 
       if (!rects || rects.length === 0) return index; // Exit if no rects
 
-      // Generate a color based on the index
-      const colors = [
-        '#FF0000',
-        '#00FF00',
-        '#0000FF',
-        '#FFA500',
-        '#800080',
-        '#008080',
-        '#FF69B4',
-        '#4B0082',
-        '#FF4500',
-        '#2E8B57',
-        '#DC143C',
-        '#4682B4',
-      ];
+      // Indexed mode is only used for vision screenshots and debugging, so keep
+      // it in the Shedi accent family instead of the legacy rainbow palette.
+      const colors = ['#0EA5E9', '#0284C7', '#0369A1', '#38BDF8', '#075985', '#0EA5E9'];
       const colorIndex = index % colors.length;
       const baseColor = colors[colorIndex];
       const backgroundColor = baseColor + '1A'; // 10% opacity version of the color

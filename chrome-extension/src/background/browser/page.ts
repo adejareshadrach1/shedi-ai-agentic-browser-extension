@@ -15,6 +15,8 @@ import {
   getClickableElements as _getClickableElements,
   removeHighlights as _removeHighlights,
   getScrollInfo as _getScrollInfo,
+  showActionVisual as _showActionVisual,
+  clearActionVisual as _clearActionVisual,
 } from './dom/service';
 import { DOMElementNode, type DOMState } from './dom/views';
 import { type BrowserContextConfig, DEFAULT_BROWSER_CONTEXT_CONFIG, type PageState, URLNotAllowedError } from './views';
@@ -178,7 +180,11 @@ export default class Page {
     }
   }
 
-  async getClickableElements(showHighlightElements: boolean, focusElement: number): Promise<DOMState | null> {
+  async getClickableElements(
+    showHighlightElements: boolean,
+    focusElement: number,
+    indexedHighlights = false,
+  ): Promise<DOMState | null> {
     if (!this._validWebPage) {
       return null;
     }
@@ -188,7 +194,34 @@ export default class Page {
       showHighlightElements,
       focusElement,
       this._config.viewportExpansion,
+      false,
+      indexedHighlights,
     );
+  }
+
+  /**
+   * Render the Shedi action overlay (gliding pointer + glowing ring + action chip)
+   * over the element the agent is about to interact with. Purely cosmetic.
+   */
+  async showActionVisual(element: ElementHandle, label: string, xpath?: string | null): Promise<void> {
+    try {
+      const box = await element.boundingBox();
+      if (!box) return;
+      await _showActionVisual(this._tabId, {
+        x: box.x,
+        y: box.y,
+        width: box.width,
+        height: box.height,
+        label,
+        xpath: xpath ?? null,
+      });
+    } catch (error) {
+      logger.debug('Unable to render action visual:', error);
+    }
+  }
+
+  async clearActionVisual(): Promise<void> {
+    await _clearActionVisual(this._tabId);
   }
 
   // Get scroll position information for the current page.
@@ -397,9 +430,11 @@ export default class Page {
 
       // Get DOM content (equivalent to dom_service.get_clickable_elements)
       // This part would need to be implemented based on your DomService logic
-      // showHighlightElements is true if either useVision or displayHighlights is true
+      // showHighlightElements is true if either useVision or displayHighlights is true.
+      // Numbered highlights are only needed for vision screenshots; the default
+      // experience relies on the on-demand action overlay instead.
       const displayHighlights = this._config.displayHighlights || useVision;
-      const content = await this.getClickableElements(displayHighlights, focusElement);
+      const content = await this.getClickableElements(displayHighlights, focusElement, useVision);
       if (!content) {
         logger.warning('Failed to get clickable elements');
         // Return last known good state if available
@@ -1129,6 +1164,10 @@ export default class Page {
         logger.debug(`Non-critical error preparing element: ${e}`);
       }
 
+      // Show the agent's on-page pointer + target ring before typing
+      await this.showActionVisual(element, 'Typing', elementNode.xpath);
+      await new Promise(resolve => setTimeout(resolve, 320));
+
       // Get element properties to determine input method
       const tagName = await element.evaluate(el => el.tagName.toLowerCase());
       const isContentEditable = await element.evaluate(el => {
@@ -1300,6 +1339,10 @@ export default class Page {
 
       // Scroll element into view if needed
       await this._scrollIntoViewIfNeeded(element);
+
+      // Show the agent's on-page pointer + target ring before acting
+      await this.showActionVisual(element, 'Clicking', elementNode.xpath);
+      await new Promise(resolve => setTimeout(resolve, 320));
 
       try {
         // First attempt: Use Puppeteer's click method with timeout

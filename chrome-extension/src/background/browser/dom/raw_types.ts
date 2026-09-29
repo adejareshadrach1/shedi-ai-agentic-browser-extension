@@ -31,6 +31,8 @@ export interface BuildDomTreeArgs {
   focusHighlightIndex: number;
   viewportExpansion: number;
   debugMode?: boolean;
+  /** 'action' (default) skips the per-element grid; 'indexed' keeps numbered highlights for vision. */
+  highlightMode?: 'action' | 'indexed';
 }
 
 export interface PerfMetrics {

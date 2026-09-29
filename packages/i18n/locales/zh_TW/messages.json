@@ -1,11 +1,11 @@
 {
   "app_metadata_description": {
     "description": "Extension description",
-    "message": "使用 AI 自動化網頁任務！Nanobrowser 是一款開放原始碼的瀏覽器擴充功能，能協助您擷取資料、填寫表單等。"
+    "message": "Shedi AI 可運用 AI 自動化網頁任務，協助您擷取資料、填寫表單等。"
   },
   "app_metadata_name": {
     "description": "Extension name",
-    "message": "Nanobrowser：AI 網頁代理程式與自動化"
+    "message": "Shedi AI Agentic Browser Extension"
   },
   "errors_unknown": {
     "message": "發生未知錯誤"
@@ -38,7 +38,7 @@
     "message": "回到對話"
   },
   "welcome_title": {
-    "message": "歡迎使用 Nanobrowser！"
+    "message": "歡迎使用 Shedi AI！"
   },
   "welcome_instruction": {
     "message": "開始使用前，請先完成 API 金鑰的設定。"
@@ -167,7 +167,7 @@
     "message": "啟用語音輸入"
   },
   "permissions_microphone_description": {
-    "message": "Nanobrowser 需要麥克風存取權限，才能將語音轉換為文字。"
+    "message": "Shedi AI 需要麥克風存取權限，才能將語音轉換為文字。"
   },
   "permissions_microphone_grantButton": {
     "message": "授予麥克風權限"
@@ -239,10 +239,10 @@
     "message": "使用大型語言模型的視覺能力 (將會消耗更多的 token 以取得更好的結果)"
   },
   "options_general_displayHighlights": {
-    "message": "顯示醒目標示"
+    "message": "代理活動視覺效果"
   },
   "options_general_displayHighlights_desc": {
-    "message": "在可互動的元素 (如按鈕、連結等) 上顯示視覺化醒目標示"
+    "message": "代理運作時，在頁面上顯示 Shedi 指標與目標光環"
   },
   "options_general_planningInterval": {
     "message": "重新規劃頻率"
@@ -339,6 +339,24 @@
   },
   "options_models_addNewProvider": {
     "message": "新增提供者"
+  },
+  "options_models_update": {
+    "message": "更新模型"
+  },
+  "options_models_updating": {
+    "message": "更新中..."
+  },
+  "options_models_updateAll": {
+    "message": "全部更新"
+  },
+  "options_models_updateHint": {
+    "message": "從此供應商取得最新的模型清單"
+  },
+  "options_models_updateFailed": {
+    "message": "更新失敗："
+  },
+  "options_models_updateDone": {
+    "message": "模型清單已更新"
   },
   "options_models_providers_openaiCompatible": {
     "message": "與 OpenAI 相容的 API 提供者"

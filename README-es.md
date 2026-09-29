@@ -1,34 +1,34 @@
-<h1 align="center">
-    <img src="https://github.com/user-attachments/assets/ec60b0c4-87ba-48f4-981a-c55ed0e8497b" height="100" width="375" alt="banner" /><br>
-</h1>
+<p align="center">
+   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
+</p>
 
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nanobrowser)
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/nanobrowser_ai)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/NN3ABHggMK)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
+[![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
 </div>
 
-## 🌐 Nanobrowser
+## 🌐 Shedi AI
 
-Nanobrowser es una herramienta de automatización web con IA que se ejecuta en tu navegador. Es una alternativa gratuita a OpenAI Operator, con opciones flexibles de modelos de lenguaje (LLM) y un sistema multiagente.
+Shedi AI es una herramienta de automatización web con IA que se ejecuta en tu navegador. Es una alternativa gratuita a OpenAI Operator, con opciones flexibles de modelos de lenguaje (LLM) y un sistema multiagente.
 
-⬇️ Descarga [Nanobrowser desde Chrome Web Store](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal) gratis
+⬇️ Descarga [Shedi AI desde Chrome Web Store](https://shedi.ai) gratis
 
-👏 Únete a la comunidad en [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
+👏 Únete a la comunidad en [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
-❤️ ¿Te encanta Nanobrowser? ¡Danos una estrella 🌟 y ayúdanos a correr la voz!
+❤️ ¿Te encanta Shedi AI? ¡Danos una estrella 🌟 y ayúdanos a correr la voz!
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Nanobrowser Demo GIF" />
-<p><em>El sistema multiagente de Nanobrowser analizando HuggingFace en tiempo real, con el Planner autocorrigiéndose de forma inteligente al enfrentar obstáculos e instruyendo dinámicamente al Navigator para ajustar su enfoque, todo ejecutándose localmente en tu navegador.</em></p>
+<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
+<p><em>El sistema multiagente de Shedi AI analizando HuggingFace en tiempo real, con el Planner autocorrigiéndose de forma inteligente al enfrentar obstáculos e instruyendo dinámicamente al Navigator para ajustar su enfoque, todo ejecutándose localmente en tu navegador.</em></p>
 </div>
 
-## 🔥 ¿Por qué usar Nanobrowser?
+## 🔥 ¿Por qué usar Shedi AI?
 
-¿Buscas un potente agente de navegador con IA sin el precio de $200/mes de OpenAI Operator? **Nanobrowser**, como extensión de Chrome, ofrece capacidades avanzadas de automatización web mientras tú tienes el control total.
+¿Buscas un potente agente de navegador con IA sin el precio de $200/mes de OpenAI Operator? **Shedi AI**, como extensión de Chrome, ofrece capacidades avanzadas de automatización web mientras tú tienes el control total.
 
 - **100% Gratis** - Sin suscripciones ni costos ocultos. Solo instala y usa tus propias claves de API, pagando únicamente por lo que tú consumas.
 - **Enfoque En Privacidad** - Todo se ejecuta en tu navegador local. Tus credenciales permanecen contigo y nunca se comparten con ningún servicio en la nube.
@@ -51,14 +51,14 @@ Nanobrowser es una herramienta de automatización web con IA que se ejecuta en t
 ## 🚀 Inicio Rápido
 
 1. **Instala desde Chrome Web Store** (Versión Estable):
-   * Visita la [página de Nanobrowser en Chrome Web Store](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal)
+   * Visita la [página de Shedi AI en Chrome Web Store](https://shedi.ai)
    * Haz clic en el botón "Añadir a Chrome"
    * Confirma la instalación cuando se te solicite
 
 > **Nota Importante**: Para acceder a las funciones más recientes, instala desde ["Instalar Última Versión Manualmente"](#-instalar-última-versión-manualmente) abajo, ya que la versión de Chrome Web Store puede tardar en actualizarse debido al proceso de revisión.
 
 2. **Configurar Modelos de Agente**:
-   * Haz clic en el icono de Nanobrowser ubicado en la barra de herramientas para abrir el panel lateral
+   * Haz clic en el icono de Shedi AI ubicado en la barra de herramientas para abrir el panel lateral
    * Haz clic en el icono de `Settings` (arriba a la derecha)
    * Agrega tus claves de API del LLM
    * Elige qué modelo usar para cada agente (Navigator, Planner)
@@ -68,29 +68,29 @@ Nanobrowser es una herramienta de automatización web con IA que se ejecuta en t
 Para obtener la versión más reciente con todas las funciones nuevas:
 
 1. **Descargar**
-    * Descarga el archivo `nanobrowser.zip` más reciente desde la [página de lanzamientos](https://github.com/nanobrowser/nanobrowser/releases) oficial en GitHub.
+    * Descarga el archivo `shedi-ai.zip` más reciente desde la [página de lanzamientos](https://github.com/shedi-ai/shedi/releases) oficial en GitHub.
 
 2. **Instalar**:
-    * Extrae el archivo `nanobrowser.zip`.
+    * Extrae el archivo `shedi-ai.zip`.
     * Abre `chrome://extensions/` en Chrome
     * Habilita el `Modo de desarrollador` (arriba a la derecha)
     * Haz clic en `Cargar extensión sin empaquetar` (arriba a la izquierda)
-    * Selecciona la carpeta descomprimida de `nanobrowser`.
+    * Selecciona la carpeta descomprimida de `shedi-ai`.
 
 3. **Configurar Modelos de Agente**
-    * Haz clic en el icono de Nanobrowser en la barra de herramientas para abrir el panel lateral
+    * Haz clic en el icono de Shedi AI en la barra de herramientas para abrir el panel lateral
     * Haz clic en el icono de `Settings` (arriba a la derecha).
     * Agrega tus claves de API del LLM
     * Elige qué modelo usar para cada agente (Navigator, Planner)
 
 4. **Actualizar**:
-    * Descarga el archivo `nanobrowser.zip` más reciente desde la página de lanzamientos.
-    * Extrae y reemplaza los archivos existentes de Nanobrowser con los nuevos.
-    * Ve a `chrome://extensions/` en Chrome y haz clic en el icono de actualizar en la tarjeta de Nanobrowser.
+    * Descarga el archivo `shedi-ai.zip` más reciente desde la página de lanzamientos.
+    * Extrae y reemplaza los archivos existentes de Shedi AI con los nuevos.
+    * Ve a `chrome://extensions/` en Chrome y haz clic en el icono de actualizar en la tarjeta de Shedi AI.
 
 ## 🛠️ Compilar desde el Código Fuente
 
-Si prefieres compilar Nanobrowser por ti mismo, sigue estos pasos:
+Si prefieres compilar Shedi AI por ti mismo, sigue estos pasos:
 
 1. **Requisitos Previos**:
    * [Node.js](https://nodejs.org/) (v22.12.0 o superior)
@@ -98,8 +98,8 @@ Si prefieres compilar Nanobrowser por ti mismo, sigue estos pasos:
 
 2. **Clonar el Repositorio**:
    ```bash
-   git clone https://github.com/nanobrowser/nanobrowser.git
-   cd nanobrowser
+   git clone https://github.com/shedi-ai/shedi.git
+   cd shedi-ai
    ```
 
 3. **Instalar Dependencias**:
@@ -123,7 +123,7 @@ Si prefieres compilar Nanobrowser por ti mismo, sigue estos pasos:
 
 ## 🤖 Eligiendo tus Modelos
 
-Nanobrowser te permite configurar distintos modelos LLM para cada agente para equilibrar costo y rendimiento. Aquí están las configuraciones recomendadas:
+Shedi AI te permite configurar distintos modelos LLM para cada agente para equilibrar costo y rendimiento. Aquí están las configuraciones recomendadas:
 
 ### Mejor Rendimiento
 - **Planner**: Claude Sonnet 4
@@ -151,7 +151,7 @@ Nanobrowser te permite configurar distintos modelos LLM para cada agente para eq
   - **Qwen 2.5 Coder 14B**
   - **Mistral Small 24B**
   - [Últimos resultados de pruebas de la comunidad](https://gist.github.com/maximus2600/75d60bf3df62986e2254d5166e2524cb)
-  - Te invitamos a compartir tu experiencia con otros modelos locales en nuestro [Discord](https://discord.gg/NN3ABHggMK)
+  - Te invitamos a compartir tu experiencia con otros modelos locales en nuestro [X](https://x.com/shedi_ai)
 
 - **Ingeniería de Prompts**:
   - Los modelos locales requieren prompts más específicos y claros
@@ -161,7 +161,7 @@ Nanobrowser te permite configurar distintos modelos LLM para cada agente para eq
 
 > **Nota**: La configuración económica puede producir resultados menos estables y requerir más iteraciones para tareas complejas.
 
-> **Consejo**: ¡Siéntete libre de experimentar con tus propias configuraciones de modelos! ¿Encontraste una combinación excelente? Compártela con la comunidad en nuestro [Discord](https://discord.gg/NN3ABHggMK) para ayudar a otros a optimizar sus configuraciones.
+> **Consejo**: ¡Siéntete libre de experimentar con tus propias configuraciones de modelos! ¿Encontraste una combinación excelente? Compártela con la comunidad en nuestro [X](https://x.com/shedi_ai) para ayudar a otros a optimizar sus configuraciones.
 
 ## 💡 Velo en Acción
 
@@ -178,19 +178,19 @@ Aquí tienes algunas tareas poderosas que puedes realizar con solo una frase:
 
 ## 🛠️ Hoja de Ruta
 
-Estamos desarrollando activamente Nanobrowser con características emocionantes en el horizonte. ¡Te invitamos a unirte!
+Estamos desarrollando activamente Shedi AI con características emocionantes en el horizonte. ¡Te invitamos a unirte!
 
-Consulta nuestra hoja de ruta detallada y las características próximas en nuestras [Discusiones de GitHub](https://github.com/nanobrowser/nanobrowser/discussions/85). 
+Consulta nuestra hoja de ruta detallada y las características próximas en nuestras [Discusiones de GitHub](https://github.com/shedi-ai/shedi/discussions/85). 
 
 ## 🤝 Contribuciones
 
-**Necesitamos tu ayuda para hacer que Nanobrowser sea aún mejor!**  Se aceptan contribuciones de todo tipo:
+**Necesitamos tu ayuda para hacer que Shedi AI sea aún mejor!**  Se aceptan contribuciones de todo tipo:
 
 *  **Comparte Prompts y Casos de Uso** 
    * Únete a nuestro [servidor de Discord](https://discord.gg/NN3ABHggMK).
-   * Comparte cómo estás usando Nanobrowser. Ayúdanos a construir una biblioteca de prompts útiles y casos de uso reales.
+   * Comparte cómo estás usando Shedi AI. Ayúdanos a construir una biblioteca de prompts útiles y casos de uso reales.
 *  **Proporciona Retroalimentación** 
-   * Prueba Nanobrowser y danos tu opinión sobre su rendimiento o sugiere mejoras en nuestro [servidor de Discord](https://discord.gg/NN3ABHggMK).
+   * Prueba Shedi AI y danos tu opinión sobre su rendimiento o sugiere mejoras en nuestro [servidor de Discord](https://discord.gg/NN3ABHggMK).
 * **Contribuye con Código**
    * Consulta nuestro [CONTRIBUTING.md](CONTRIBUTING.md) para conocer las pautas sobre cómo contribuir con código al proyecto.
    * Envía pull requests para corrección de errores, funciones, o mejoras en la documentación.
@@ -203,21 +203,21 @@ Creemos en el poder del código abierto y la colaboración comunitaria. ¡Únete
 
 Si descubres una vulnerabilidad de seguridad, por favor **NO** la divulgues públicamente a través de issues, pull requests, o discusiones.
 
-En su lugar, por favor crea un [GitHub Security Advisory](https://github.com/nanobrowser/nanobrowser/security/advisories/new) para reportar la vulnerabilidad de forma responsable. Esto nos permite abordar el problema antes de que se divulgue públicamente.
+En su lugar, por favor crea un [GitHub Security Advisory](https://github.com/shedi-ai/shedi/security/advisories/new) para reportar la vulnerabilidad de forma responsable. Esto nos permite abordar el problema antes de que se divulgue públicamente.
 
-¡Agradecemos tu ayuda para mantener Nanobrowser y sus usuarios seguros!
+¡Agradecemos tu ayuda para mantener Shedi AI y sus usuarios seguros!
 
 ## 💬 Comunidad
 
 Únete a nuestra creciente comunidad de desarrolladores y usuarios:
 
-- [Discord](https://discord.gg/NN3ABHggMK) - Habla con el equipo y la comunidad
-- [Twitter](https://x.com/nanobrowser_ai) - Síguenos para actualizaciones y anuncios
-- [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions) - Comparte ideas y realiza preguntas
+- [X](https://x.com/shedi_ai) - Habla con el equipo y la comunidad
+- [Twitter](https://x.com/shedi_ai) - Síguenos para actualizaciones y anuncios
+- [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) - Comparte ideas y realiza preguntas
 
 ## 👏 Agradecimientos
 
-Nanobrowser se construye sobre otros increíbles proyectos de código abierto:
+Shedi AI se construye sobre otros increíbles proyectos de código abierto:
 
 - [Browser Use](https://github.com/browser-use/browser-use)
 - [Puppeteer](https://github.com/EmergenceAI/Agent-E)
@@ -231,9 +231,9 @@ Nanobrowser se construye sobre otros increíbles proyectos de código abierto:
 
 Este proyecto está bajo la Licencia Apache 2.0 - consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-Hecho con ❤️ por el equipo de Nanobrowser.
+Hecho con ❤️ por el equipo de Shedi AI.
 
-¿Te gusta Nanobrowser? ¡Danos una estrella 🌟 y únete a nosotros en [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
+¿Te gusta Shedi AI? ¡Danos una estrella 🌟 y únete a nosotros en [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
 ## 🔗 Nuestros otros productos
 

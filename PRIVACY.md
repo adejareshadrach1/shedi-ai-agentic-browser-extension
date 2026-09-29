@@ -1,17 +1,17 @@
-# Privacy Policy for Nanobrowser
+# Privacy Policy for Shedi AI
 
 ## Introduction
 
-[Nanobrowser](https://github.com/nanobrowser/nanobrowser) is an open-source AI web automation Chrome extension. This Privacy Policy explains how we handle your data and protect your privacy.
+[Shedi AI](https://github.com/shedi-ai/shedi) is an open-source AI web automation Chrome extension. This Privacy Policy explains how we handle your data and protect your privacy.
 
 ## Open Source
 
-Nanobrowser is licensed under Apache License 2.0. All source code is publicly available in our [GitHub repository](https://github.com/nanobrowser/nanobrowser), ensuring complete transparency.
+Shedi AI is licensed under Apache License 2.0. All source code is publicly available in our [GitHub repository](https://github.com/shedi-ai/shedi), ensuring complete transparency.
 
 ## Data Collection and Processing
 
 ### Local Processing
-- Nanobrowser operates entirely within your browser
+- Shedi AI operates entirely within your browser
 - Login credentials and cookies never leave your browser
 - All user data is processed locally by default
 

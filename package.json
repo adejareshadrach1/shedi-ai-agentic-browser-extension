@@ -1,11 +1,11 @@
 {
-  "name": "nanobrowser",
+  "name": "shedi-ai",
   "version": "0.1.13",
-  "description": "AI web automation tool",
+  "description": "Shedi AI Agentic Browser Extension",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nanobrowser/nanobrowser.git"
+    "url": "https://github.com/shedi-ai/shedi.git"
   },
   "type": "module",
   "scripts": {

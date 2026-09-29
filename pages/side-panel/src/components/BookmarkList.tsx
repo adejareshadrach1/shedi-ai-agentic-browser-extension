@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useRef, useEffect } from 'react';
 import { FaTrash, FaPen, FaCheck, FaTimes } from 'react-icons/fa';
+import { FiZap } from 'react-icons/fi';
 import { t } from '@extension/i18n';
 
 interface Bookmark {
@@ -80,12 +81,18 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
     }
   }, [editingId]);
 
+  if (bookmarks.length === 0) return null;
+
   return (
-    <div className="p-2">
-      <h3 className={`mb-3 text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-        {t('chat_bookmarks_header')}
-      </h3>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div className="px-4 pb-6">
+      <div className="mb-2.5 flex items-center gap-1.5">
+        <FiZap className="size-3.5 text-sky-500" />
+        <h3 className={`text-[11px] font-semibold uppercase tracking-wider ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+          {t('chat_bookmarks_header')}
+        </h3>
+      </div>
+
+      <div className="flex flex-col gap-2">
         {bookmarks.map(bookmark => (
           <div
             key={bookmark.id}
@@ -94,83 +101,87 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
             onDragEnd={handleDragEnd}
             onDragOver={handleDragOver}
             onDrop={e => handleDrop(e, bookmark.id)}
-            className={`group relative rounded-lg p-3 ${
-              isDarkMode ? 'bg-slate-800 hover:bg-slate-700' : 'bg-white hover:bg-sky-50'
-            } border ${isDarkMode ? 'border-slate-700' : 'border-sky-100'}`}>
+            className={`group relative flex items-center gap-2.5 rounded-xl border px-3 py-2.5 transition-all ${
+              isDarkMode
+                ? 'border-white/5 bg-slate-900/60 hover:border-sky-500/40 hover:bg-slate-900'
+                : 'border-slate-200/70 bg-white shadow-sm hover:border-sky-300 hover:shadow-md'
+            }`}>
             {editingId === bookmark.id ? (
-              <div className="flex items-center">
+              <div className="flex w-full items-center gap-1.5">
                 <input
                   ref={inputRef}
                   type="text"
                   value={editTitle}
                   onChange={e => setEditTitle(e.target.value)}
-                  className={`mr-2 grow rounded px-2 py-1 text-sm ${
-                    isDarkMode ? 'border-slate-600 bg-slate-700 text-gray-200' : 'border-sky-100 bg-white text-gray-700'
-                  } border`}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') handleSaveEdit(bookmark.id);
+                    if (e.key === 'Escape') handleCancelEdit();
+                  }}
+                  className={`min-w-0 grow rounded-lg border px-2 py-1 text-sm outline-none ${
+                    isDarkMode
+                      ? 'border-sky-500/40 bg-slate-800 text-slate-200'
+                      : 'border-sky-200 bg-white text-slate-700'
+                  }`}
                 />
                 <button
                   onClick={() => handleSaveEdit(bookmark.id)}
-                  className={`rounded p-1 ${
+                  className={`rounded-lg p-1.5 transition-colors ${
                     isDarkMode
-                      ? 'bg-slate-700 text-green-400 hover:bg-slate-600'
-                      : 'bg-white text-green-500 hover:bg-gray-100'
+                      ? 'text-emerald-400 hover:bg-white/5'
+                      : 'text-emerald-500 hover:bg-slate-100'
                   }`}
                   aria-label={t('chat_bookmarks_saveEdit')}
                   type="button">
-                  <FaCheck size={14} />
+                  <FaCheck size={13} />
                 </button>
                 <button
                   onClick={handleCancelEdit}
-                  className={`ml-1 rounded p-1 ${
-                    isDarkMode
-                      ? 'bg-slate-700 text-red-400 hover:bg-slate-600'
-                      : 'bg-white text-red-500 hover:bg-gray-100'
+                  className={`rounded-lg p-1.5 transition-colors ${
+                    isDarkMode ? 'text-rose-400 hover:bg-white/5' : 'text-rose-500 hover:bg-slate-100'
                   }`}
                   aria-label={t('chat_bookmarks_cancelEdit')}
                   type="button">
-                  <FaTimes size={14} />
+                  <FaTimes size={13} />
                 </button>
               </div>
             ) : (
-              <>
-                <div className="flex items-center">
-                  <button
-                    type="button"
-                    onClick={() => onBookmarkSelect(bookmark.content)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        onBookmarkSelect(bookmark.content);
-                      }
-                    }}
-                    className="w-full text-left">
-                    <div
-                      className={`truncate pr-10 text-sm font-medium ${isDarkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-                      {bookmark.title}
-                    </div>
-                  </button>
-                </div>
-              </>
+              <button
+                type="button"
+                onClick={() => onBookmarkSelect(bookmark.content)}
+                className="flex w-full min-w-0 items-center gap-2.5 text-left">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400/20 to-blue-500/20 text-sm">
+                  <FiZap className="size-3.5 text-sky-500" />
+                </span>
+                <span
+                  className={`min-w-0 flex-1 truncate text-sm font-medium ${
+                    isDarkMode ? 'text-slate-200' : 'text-slate-700'
+                  }`}>
+                  {bookmark.title}
+                </span>
+                <span
+                  className={`mr-12 shrink-0 text-[10px] font-medium opacity-0 transition-opacity group-hover:opacity-100 ${
+                    isDarkMode ? 'text-slate-500' : 'text-slate-400'
+                  }`}>
+                  Run
+                </span>
+              </button>
             )}
 
             {editingId !== bookmark.id && (
               <>
-                {/* Edit button - top right */}
                 <button
                   onClick={e => {
                     e.stopPropagation();
                     handleEditClick(bookmark);
                   }}
-                  className={`absolute right-[28px] top-1/2 z-10 -translate-y-1/2 rounded p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                    isDarkMode
-                      ? 'bg-slate-700 text-sky-400 hover:bg-slate-600'
-                      : 'bg-white text-sky-500 hover:bg-gray-100'
+                  className={`absolute right-8 top-1/2 z-10 -translate-y-1/2 rounded-lg p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
+                    isDarkMode ? 'text-sky-400 hover:bg-white/10' : 'text-sky-500 hover:bg-slate-100'
                   }`}
                   aria-label={t('chat_bookmarks_edit')}
                   type="button">
-                  <FaPen size={14} />
+                  <FaPen size={12} />
                 </button>
 
-                {/* Delete button - bottom right */}
                 <button
                   onClick={e => {
                     e.stopPropagation();
@@ -178,14 +189,12 @@ const BookmarkList: React.FC<BookmarkListProps> = ({
                       onBookmarkDelete(bookmark.id);
                     }
                   }}
-                  className={`absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded p-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
-                    isDarkMode
-                      ? 'bg-slate-700 text-gray-400 hover:bg-slate-600'
-                      : 'bg-white text-gray-500 hover:bg-gray-100'
+                  className={`absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-lg p-1.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
+                    isDarkMode ? 'text-slate-400 hover:bg-white/10' : 'text-slate-500 hover:bg-slate-100'
                   }`}
                   aria-label={t('chat_bookmarks_delete')}
                   type="button">
-                  <FaTrash size={14} />
+                  <FaTrash size={12} />
                 </button>
               </>
             )}

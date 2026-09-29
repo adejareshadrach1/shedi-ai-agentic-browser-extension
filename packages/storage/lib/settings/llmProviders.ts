@@ -1,9 +1,42 @@
 import { StorageEnum } from '../base/enums';
 import { createStorage } from '../base/base';
 import type { BaseStorage } from '../base/types';
-import { type AgentNameEnum, llmProviderModelNames, llmProviderParameters, ProviderTypeEnum } from './types';
+import {
+  type AgentNameEnum,
+  llmProviderModelNames,
+  llmProviderParameters,
+  ProviderTypeEnum,
+  retiredModelNames,
+} from './types';
 
 const AZURE_API_VERSION = '2025-04-01-preview';
+
+/**
+ * Drop retired model IDs from a stored provider configuration and backfill the current
+ * defaults in their place.
+ *
+ * Providers retire model IDs over time (Google, for example, now answers 404 for
+ * `gemini-2.5-pro` on new API keys). A configuration that keeps pointing at those IDs
+ * makes every task fail, so stale entries are swapped out on read.
+ */
+export function migrateModelNames(providerId: string, modelNames: string[]): string[] {
+  const retired = retiredModelNames[providerId as ProviderTypeEnum] ?? [];
+  if (retired.length === 0) return modelNames;
+
+  const retiredSet = new Set(retired);
+  const kept = modelNames.filter(model => !retiredSet.has(model));
+  const removedCount = modelNames.length - kept.length;
+
+  // Nothing stale in this list - leave the user's choices untouched.
+  if (removedCount === 0) return modelNames;
+
+  const defaults = llmProviderModelNames[providerId as keyof typeof llmProviderModelNames] ?? [];
+  const seen = new Set(kept);
+  const replacements = defaults.filter(model => !seen.has(model)).slice(0, removedCount);
+  const migrated = [...kept, ...replacements];
+
+  return migrated.length > 0 ? migrated : [...defaults];
+}
 
 // Interface for a single provider configuration
 export interface ProviderConfig {
@@ -209,6 +242,9 @@ function ensureBackwardCompatibility(providerId: string, config: ProviderConfig)
     if (!updatedConfig.modelNames) {
       // console.log(`[ensureBackwardCompatibility] Adding default modelNames for non-Azure ${providerId}`);
       updatedConfig.modelNames = llmProviderModelNames[providerId as keyof typeof llmProviderModelNames] || [];
+    } else {
+      // Swap out model IDs the provider has retired so tasks don't fail with 404s.
+      updatedConfig.modelNames = migrateModelNames(providerId, updatedConfig.modelNames);
     }
   }
 

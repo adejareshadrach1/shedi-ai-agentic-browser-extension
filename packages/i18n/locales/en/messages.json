@@ -1,11 +1,11 @@
 {
   "app_metadata_description": {
     "description": "Extension description",
-    "message": "Automate web tasks with AI! NanoBrowser is an open-source browser extension that lets you extract data, fill forms, and more."
+    "message": "Shedi AI Agentic Browser Extension automates web tasks with AI, helping you extract data, fill forms, and more."
   },
   "app_metadata_name": {
     "description": "Extension name",
-    "message": "Nanobrowser: AI Web Agent & Automation"
+    "message": "Shedi AI Agentic Browser Extension"
   },
   "errors_unknown": {
     "message": "Unknown error occurred"
@@ -38,7 +38,7 @@
     "message": "Back to chat"
   },
   "welcome_title": {
-    "message": "Welcome to Nanobrowser!"
+    "message": "Welcome to Shedi AI!"
   },
   "welcome_instruction": {
     "message": "To get started, please configure your API keys in the settings page."
@@ -167,7 +167,7 @@
     "message": "Enable Voice Input"
   },
   "permissions_microphone_description": {
-    "message": "Nanobrowser needs microphone access to convert your speech to text."
+    "message": "Shedi AI needs microphone access to convert your speech to text."
   },
   "permissions_microphone_grantButton": {
     "message": "Grant Microphone Permission"
@@ -239,10 +239,10 @@
     "message": "Use vision capability of LLMs (consumes more tokens for better results)"
   },
   "options_general_displayHighlights": {
-    "message": "Display Highlights"
+    "message": "Agent Activity Visuals"
   },
   "options_general_displayHighlights_desc": {
-    "message": "Show visual highlights on interactive elements (e.g. buttons, links, etc.)"
+    "message": "Show the Shedi pointer and target ring on the page while the agent works"
   },
   "options_general_planningInterval": {
     "message": "Replanning Frequency"
@@ -344,6 +344,24 @@
   },
   "options_models_addNewProvider": {
     "message": "Add New Provider"
+  },
+  "options_models_update": {
+    "message": "Update models"
+  },
+  "options_models_updating": {
+    "message": "Updating..."
+  },
+  "options_models_updateAll": {
+    "message": "Update all"
+  },
+  "options_models_updateHint": {
+    "message": "Fetch the latest model list from this provider"
+  },
+  "options_models_updateFailed": {
+    "message": "Update failed:"
+  },
+  "options_models_updateDone": {
+    "message": "Model list updated"
   },
   "options_models_providers_openaiCompatible": {
     "message": "OpenAI-compatible API Provider"

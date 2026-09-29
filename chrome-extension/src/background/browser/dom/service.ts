@@ -88,6 +88,8 @@ export async function getReadabilityContent(tabId: number): Promise<ReadabilityR
  * @param showHighlightElements - Whether to show the highlight elements.
  * @param focusElement - The element to focus on.
  * @param viewportExpansion - The viewport expansion to use.
+ * @param indexedHighlights - When true, render the legacy numbered index overlay (needed for
+ * vision screenshots). When false, only the on-demand action overlay is shown.
  * @returns A DOMState object containing the clickable elements for the current page.
  */
 export async function getClickableElements(
@@ -97,6 +99,7 @@ export async function getClickableElements(
   focusElement = -1,
   viewportExpansion = 0,
   debugMode = false,
+  indexedHighlights = false,
 ): Promise<DOMState> {
   const [elementTree, selectorMap] = await _buildDomTree(
     tabId,
@@ -105,6 +108,7 @@ export async function getClickableElements(
     focusElement,
     viewportExpansion,
     debugMode,
+    indexedHighlights,
   );
   return { elementTree, selectorMap };
 }
@@ -116,6 +120,7 @@ async function _buildDomTree(
   focusElement = -1,
   viewportExpansion = 0,
   debugMode = false,
+  indexedHighlights = false,
 ): Promise<[DOMElementNode, Map<number, DOMElementNode>]> {
   // If URL is provided and it's about:blank, return a minimal DOM tree
   if (isNewTabPage(url) || url.startsWith('chrome://')) {
@@ -149,6 +154,7 @@ async function _buildDomTree(
         startId: 0,
         startHighlightIndex: 0,
         debugMode,
+        highlightMode: indexedHighlights ? ('indexed' as const) : ('action' as const),
       },
     ],
   });
@@ -198,6 +204,7 @@ async function _buildDomTree(
       focusElement,
       viewportExpansion,
       debugMode,
+      indexedHighlights,
       mainFramePage,
       frameInfoResults,
       _getMaxID(mainFramePage),
@@ -215,6 +222,7 @@ async function constructFrameTree(
   focusElement = -1,
   viewportExpansion = 0,
   debugMode = false,
+  indexedHighlights = false,
   parentFramePage: BuildDomTreeResult,
   allFramesInfo: FrameInfo[],
   startingNodeId: number,
@@ -253,6 +261,7 @@ async function constructFrameTree(
           startId: maxNodeId + 1,
           startHighlightIndex: maxHighlightIndex + 1,
           debugMode,
+          highlightMode: indexedHighlights ? ('indexed' as const) : ('action' as const),
         },
       ],
     });
@@ -300,6 +309,7 @@ async function constructFrameTree(
         focusElement,
         viewportExpansion,
         debugMode,
+        indexedHighlights,
         subFramePage,
         allFramesInfo,
         maxNodeId,
@@ -523,10 +533,76 @@ export async function removeHighlights(tabId: number): Promise<void> {
         for (const el of Array.from(highlightedElements)) {
           el.removeAttribute('browser-user-highlight-id');
         }
+
+        // Hide the Shedi action overlay (pointer / ring / chip). We hide rather than
+        // destroy it so the pointer can glide from its previous position to the next
+        // target instead of re-entering from the corner on every action.
+        const overlay = (window as unknown as { __shediActionOverlay?: { clear?: () => void } })
+          .__shediActionOverlay;
+        if (overlay && typeof overlay.clear === 'function') {
+          overlay.clear();
+        }
+        delete (window as unknown as { __shediHighlightTargets?: unknown }).__shediHighlightTargets;
       },
     });
   } catch (error) {
     logger.error('Failed to remove highlights:', error);
+  }
+}
+
+/**
+ * Payload used to render the Shedi action overlay (cursor + glowing ring + chip).
+ * Coordinates are viewport-relative CSS pixels from puppeteer's bounding box.
+ */
+export interface ActionVisual {
+  x: number;
+  y: number;
+  width?: number;
+  height?: number;
+  label?: string;
+  selector?: string | null;
+  xpath?: string | null;
+  duration?: number;
+}
+
+/**
+ * Show the Shedi action overlay for the element the agent is about to interact with.
+ * Never throws: the overlay is cosmetic and must not break task execution.
+ */
+export async function showActionVisual(tabId: number, visual: ActionVisual): Promise<void> {
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      func: (payload: ActionVisual) => {
+        const overlay = (window as unknown as { __shediActionOverlay?: { show: (a: ActionVisual) => void } })
+          .__shediActionOverlay;
+        if (overlay && typeof overlay.show === 'function') {
+          overlay.show(payload);
+        }
+      },
+      args: [visual],
+    });
+  } catch (error) {
+    logger.debug('Failed to show action visual:', error);
+  }
+}
+
+/**
+ * Clear the Shedi action overlay for a tab.
+ */
+export async function clearActionVisual(tabId: number): Promise<void> {
+  try {
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      func: () => {
+        const overlay = (window as unknown as { __shediActionOverlay?: { clear: () => void } }).__shediActionOverlay;
+        if (overlay && typeof overlay.clear === 'function') {
+          overlay.clear();
+        }
+      },
+    });
+  } catch (error) {
+    logger.debug('Failed to clear action visual:', error);
   }
 }
 

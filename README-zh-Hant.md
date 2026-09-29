@@ -1,35 +1,34 @@
-<h1 align="center">
-    <img src="https://github.com/user-attachments/assets/ec60b0c4-87ba-48f4-981a-c55ed0e8497b" height="100" width="375" alt="banner" /><br>
-</h1>
+<p align="center">
+   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
+</p>
 
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nanobrowser)
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/nanobrowser_ai)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/NN3ABHggMK)
-[<img src="https://deepwiki.com/badge.svg" height="28" alt="Ask DeepWiki">](https://deepwiki.com/nanobrowser/nanobrowser)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
+[![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
 </div>
 
-## 🌐 Nanobrowser
+## 🌐 Shedi AI
 
-Nanobrowser 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化工具。作為 OpenAI Operator 的免費替代方案，提供彈性的 LLM 選項與多代理系統。
+Shedi AI 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化工具。作為 OpenAI Operator 的免費替代方案，提供彈性的 LLM 選項與多代理系統。
 
-⬇️ 從 [Chrome 線上應用程式商店](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal) 免費取得 Nanobrowser
+⬇️ 從 [Chrome 線上應用程式商店](https://shedi.ai) 免費取得 Shedi AI
 
-👏 加入我們的 [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai) 社群
+👏 加入我們的 [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai) 社群
 
-❤️ 喜歡 Nanobrowser 嗎？請給我們一顆星星 🌟 並協助分享！
+❤️ 喜歡 Shedi AI 嗎？請給我們一顆星星 🌟 並協助分享！
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Nanobrowser Demo GIF" />
-<p><em>Nanobrowser 的多代理系統即時分析 HuggingFace，其中 Planner 會在遇到障礙時自行修正，並動態指示 Navigator 調整做法——這一切都在本機瀏覽器中執行。</em></p>
+<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
+<p><em>Shedi AI 的多代理系統即時分析 HuggingFace，其中 Planner 會在遇到障礙時自行修正，並動態指示 Navigator 調整做法——這一切都在本機瀏覽器中執行。</em></p>
 </div>
 
-## 🔥 為什麼選擇 Nanobrowser？
+## 🔥 為什麼選擇 Shedi AI？
 
-正在尋找功能強大的 AI 瀏覽器代理，卻不想每月為 OpenAI Operator 支付 200 美元嗎？**Nanobrowser** 作為一款 Chrome 擴充功能，提供進階的網頁自動化能力，同時讓您保有完全的掌控權：
+正在尋找功能強大的 AI 瀏覽器代理，卻不想每月為 OpenAI Operator 支付 200 美元嗎？**Shedi AI** 作為一款 Chrome 擴充功能，提供進階的網頁自動化能力，同時讓您保有完全的掌控權：
 
 - **100% 免費** - 無訂閱費或隱藏成本。安裝後使用自己的 API 金鑰，只需支付給供應商的 API 使用費。
 - **注重隱私** - 所有處理都在本機瀏覽器內完成。您的認證資訊會儲存在本機，絕不會與任何雲端服務分享。
@@ -58,20 +57,20 @@ Nanobrowser 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化�
 **不支援：**
 - Firefox、Safari，以及其他 Chromium 衍生瀏覽器 (Opera、Arc 等)
 
-> **注意**：雖然 Nanobrowser 可能可在其他 Chromium 系瀏覽器上運作，我們仍建議使用 Chrome 或 Edge，以獲得最佳體驗並確保相容性。
+> **注意**：雖然 Shedi AI 可能可在其他 Chromium 系瀏覽器上運作，我們仍建議使用 Chrome 或 Edge，以獲得最佳體驗並確保相容性。
 
 
 ## 🚀 快速入門
 
 1. **從 Chrome 線上應用程式商店安裝** (穩定版)：
-   * 前往 [Nanobrowser 的 Chrome 線上應用程式商店頁面](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal)
+   * 前往 [Shedi AI 的 Chrome 線上應用程式商店頁面](https://shedi.ai)
    * 按一下 [新增至 Chrome] 按鈕
    * 在提示出現時確認安裝
 
 > **重要提示**：若要體驗最新功能，請參考下方的 [「手動安裝最新版本」](#-手動安裝最新版本) 進行安裝，因為 Chrome 線上應用程式商店的版本可能會因審核流程而延遲。
 
 2. **設定代理模型**：
-   * 按一下工具列中的 Nanobrowser 圖示以開啟側邊面板
+   * 按一下工具列中的 Shedi AI 圖示以開啟側邊面板
    * 按一下右上角的 `設定` 圖示
    * 新增 LLM API 金鑰
    * 為不同代理 (Navigator、Planner) 選擇要使用的模型
@@ -81,29 +80,29 @@ Nanobrowser 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化�
 若要取得包含所有最新功能的版本：
 
 1. **下載**
-    * 從官方 GitHub 的 [版本頁面](https://github.com/nanobrowser/nanobrowser/releases) 下載最新的 `nanobrowser.zip` 檔案。
+    * 從官方 GitHub 的 [版本頁面](https://github.com/shedi-ai/shedi/releases) 下載最新的 `shedi-ai.zip` 檔案。
 
 2. **安裝**：
-    * 解壓縮 `nanobrowser.zip`。
+    * 解壓縮 `shedi-ai.zip`。
     * 在 Chrome 中開啟 `chrome://extensions/`
     * 啟用 `開發人員模式` (右上角)
     * 按一下 `載入未封裝的擴充功能` (左上角)
-    * 選擇已解壓縮的 `nanobrowser` 資料夾。
+    * 選擇已解壓縮的 `shedi-ai` 資料夾。
 
 3. **設定代理模型**
-    * 按一下工具列中的 Nanobrowser 圖示以開啟側邊面板
+    * 按一下工具列中的 Shedi AI 圖示以開啟側邊面板
     * 按一下右上角的 `設定` 圖示。
     * 新增 LLM API 金鑰。
     * 為不同代理 (Navigator、Planner) 選擇要使用的模型。
 
 4. **升級**：
-    * 從版本頁面下載最新的 `nanobrowser.zip` 檔案。
-    * 解壓縮並用新檔案覆寫您現有的 Nanobrowser 檔案。
-    * 前往 Chrome 的 `chrome://extensions/` 頁面，然後在 Nanobrowser 卡片上按一下重新整理圖示。
+    * 從版本頁面下載最新的 `shedi-ai.zip` 檔案。
+    * 解壓縮並用新檔案覆寫您現有的 Shedi AI 檔案。
+    * 前往 Chrome 的 `chrome://extensions/` 頁面，然後在 Shedi AI 卡片上按一下重新整理圖示。
 
 ## 🛠️ 從原始碼建置
 
-如果您偏好自行建置 Nanobrowser，請依照以下步驟操作：
+如果您偏好自行建置 Shedi AI，請依照以下步驟操作：
 
 1. **先決條件**：
    * [Node.js](https://nodejs.org/) (v22.12.0 或更高版本)
@@ -111,8 +110,8 @@ Nanobrowser 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化�
 
 2. **複製儲存庫**：
    ```bash
-   git clone https://github.com/nanobrowser/nanobrowser.git
-   cd nanobrowser
+   git clone https://github.com/shedi-ai/shedi.git
+   cd shedi-ai
    ```
 
 3. **安裝相依套件**：
@@ -136,7 +135,7 @@ Nanobrowser 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化�
 
 ## 🤖 選擇您的模型
 
-Nanobrowser 允許您為每個代理設定不同的 LLM 模型，以平衡效能與成本。以下是建議的設定：
+Shedi AI 允許您為每個代理設定不同的 LLM 模型，以平衡效能與成本。以下是建議的設定：
 
 ### 追求高效能
 - **Planner**：Claude Sonnet 4
@@ -164,7 +163,7 @@ Nanobrowser 允許您為每個代理設定不同的 LLM 模型，以平衡效能
   - **Qwen 2.5 Coder 14B**
   - **Mistral Small 24B**
   - [社群最新測試結果](https://gist.github.com/maximus2600/75d60bf3df62986e2254d5166e2524cb)
-  - 歡迎社群成員在我們的 [Discord](https://discord.gg/NN3ABHggMK) 分享其他本機模型的使用經驗
+  - 歡迎社群成員在我們的 [X](https://x.com/shedi_ai) 分享其他本機模型的使用經驗
 
 - **提示詞工程**：
   - 本機模型通常需要更具體、清楚的提示詞
@@ -174,7 +173,7 @@ Nanobrowser 允許您為每個代理設定不同的 LLM 模型，以平衡效能
 
 > **請注意**：講求成本效益的設定可能會產生較不穩定的輸出，且處理複雜任務時可能需要更多次的迭代。
 
-> **提示**：歡迎盡情嘗試自己的模型設定！找到絕佳組合了嗎？到我們的 [Discord](https://discord.gg/NN3ABHggMK) 與社群分享，幫助大家最佳化設定。
+> **提示**：歡迎盡情嘗試自己的模型設定！找到絕佳組合了嗎？到我們的 [X](https://x.com/shedi_ai) 與社群分享，幫助大家最佳化設定。
 
 ## 💡 實際應用案例
 
@@ -191,19 +190,19 @@ Nanobrowser 允許您為每個代理設定不同的 LLM 模型，以平衡效能
 
 ## 🛠️ 發展藍圖
 
-我們正積極開發 Nanobrowser，未來將有更多令人期待的功能推出，歡迎加入我們！
+我們正積極開發 Shedi AI，未來將有更多令人期待的功能推出，歡迎加入我們！
 
-請至我們的 [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions/85) 查看詳細的發展藍圖與即將推出的功能。
+請至我們的 [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions/85) 查看詳細的發展藍圖與即將推出的功能。
 
 ## 🤝 如何貢獻
 
-**我們需要您的幫助，讓 Nanobrowser 變得更好！** 我們歡迎各種形式的貢獻：
+**我們需要您的幫助，讓 Shedi AI 變得更好！** 我們歡迎各種形式的貢獻：
 
 *  **分享提示詞與使用案例**
    * 加入我們的 [Discord 伺服器](https://discord.gg/NN3ABHggMK)。
-   * 分享您如何使用 Nanobrowser，協助我們建立實用的提示詞與實際應用案例資料庫。
+   * 分享您如何使用 Shedi AI，協助我們建立實用的提示詞與實際應用案例資料庫。
 *  **提供回饋意見**
-   * 試用 Nanobrowser，並在我們的 [Discord 伺服器](https://discord.gg/NN3ABHggMK) 上提供效能回饋或改進建議。
+   * 試用 Shedi AI，並在我們的 [Discord 伺服器](https://discord.gg/NN3ABHggMK) 上提供效能回饋或改進建議。
 * **貢獻程式碼**
    * 請參閱我們的 [CONTRIBUTING.md](CONTRIBUTING.md)，瞭解如何為本專案貢獻程式碼的指南。
    * 針對錯誤修復、新功能或文件改進，提出 Pull Request。
@@ -216,21 +215,21 @@ Nanobrowser 允許您為每個代理設定不同的 LLM 模型，以平衡效能
 
 如果您發現安全漏洞，請**不要**透過 Issues、Pull Request 或 Discussions 公開揭露。
 
-請建立一個 [GitHub Security Advisory](https://github.com/nanobrowser/nanobrowser/security/advisories/new) 來負責任地回報此漏洞。這讓我們能在漏洞被公開之前解決問題。
+請建立一個 [GitHub Security Advisory](https://github.com/shedi-ai/shedi/security/advisories/new) 來負責任地回報此漏洞。這讓我們能在漏洞被公開之前解決問題。
 
-我們感謝您協助維護 Nanobrowser 及其使用者的安全！
+我們感謝您協助維護 Shedi AI 及其使用者的安全！
 
 ## 💬 社群
 
 歡迎加入我們持續成長的開發者與使用者社群：
 
-- [Discord](https://discord.gg/NN3ABHggMK) - 與團隊及社群成員交流
-- [Twitter](https://x.com/nanobrowser_ai) - 追蹤最新的更新與公告
-- [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions) - 分享您的想法並提出問題
+- [X](https://x.com/shedi_ai) - 與團隊及社群成員交流
+- [Twitter](https://x.com/shedi_ai) - 追蹤最新的更新與公告
+- [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) - 分享您的想法並提出問題
 
 ## 👏 致謝
 
-Nanobrowser 的開發建立在許多優秀的開放原始碼專案之上：
+Shedi AI 的開發建立在許多優秀的開放原始碼專案之上：
 
 - [Browser Use](https://github.com/browser-use/browser-use)
 - [Puppeteer](https://github.com/EmergenceAI/Agent-E)
@@ -243,9 +242,9 @@ Nanobrowser 的開發建立在許多優秀的開放原始碼專案之上：
 
 本專案採用 Apache License 2.0 授權 - 詳情請參閱 [LICENSE](LICENSE) 檔案。
 
-由 Nanobrowser 團隊用 ❤️ 打造。
+由 Shedi AI 團隊用 ❤️ 打造。
 
-喜歡 Nanobrowser 嗎？請給我們一顆星星 🌟 並加入我們的 [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
+喜歡 Shedi AI 嗎？請給我們一顆星星 🌟 並加入我們的 [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
 ## 🔗 我們的其他產品
 
@@ -255,7 +254,7 @@ Nanobrowser 的開發建立在許多優秀的開放原始碼專案之上：
 
 **我們明確「不予背書、不提供支援、也不參與」任何** 基於本程式碼所打造、與加密貨幣、代幣、NFT 或其他區塊鏈相關應用有關的專案。
 
-**此類衍生專案與官方 Nanobrowser 專案或核心團隊** 「**沒有任何關聯**、**非由我們維護**、亦**未與我們有任何連結**」。
+**此類衍生專案與官方 Shedi AI 專案或核心團隊** 「**沒有任何關聯**、**非由我們維護**、亦**未與我們有任何連結**」。
 
 **對於使用第三方衍生專案所造成的任何損失、損害或問題，我們概不負責。** 使用者與其互動時請自行承擔風險。
 

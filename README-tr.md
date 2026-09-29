@@ -1,34 +1,33 @@
-<h1 align="center">
-    <img src="https://github.com/user-attachments/assets/ec60b0c4-87ba-48f4-981a-c55ed0e8497b" height="100" width="375" alt="banner" /><br>
-</h1>
+<p align="center">
+   <img src="./icon.png" width="120" alt="Shedi AI Agentic Browser Extension logo" />
+</p>
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nanobrowser)
-[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/nanobrowser_ai)
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/NN3ABHggMK)
-[<img src="https://deepwiki.com/badge.svg" height="28" alt="Ask DeepWiki">](https://deepwiki.com/nanobrowser/nanobrowser)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
+[![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
 </div>
 
-## 🌐 Nanobrowser
+## 🌐 Shedi AI
 
-Nanobrowser, tarayıcınızda çalışan açık kaynaklı bir yapay zeka tarayıcı otomasyon aracıdır. Esnek LLM seçenekleri ve çoklu ajan sistemiyle birlikte OpenAI Operator’a ücretsiz bir alternatiftir.
+Shedi AI, tarayıcınızda çalışan açık kaynaklı bir yapay zeka tarayıcı otomasyon aracıdır. Esnek LLM seçenekleri ve çoklu ajan sistemiyle birlikte OpenAI Operator’a ücretsiz bir alternatiftir.
 
-⬇️ [Nanobrowser’ı Chrome Web Mağazası’ndan ücretsiz edinin](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal)
+⬇️ [Shedi AI’ı Chrome Web Mağazası’ndan ücretsiz edinin](https://shedi.ai)
 
-👏 Topluluğa katılın: [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
+👏 Topluluğa katılın: [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
-❤️ Nanobrowser’ı sevdiniz mi? Bize bir yıldız ⭐ verin ve yayılmasına yardımcı olun!
+❤️ Shedi AI’ı sevdiniz mi? Bize bir yıldız ⭐ verin ve yayılmasına yardımcı olun!
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Nanobrowser Demo GIF" />
-<p><em>Nanobrowser’ın çoklu ajan sistemi, HuggingFace'i gerçek zamanlı analiz ederken; Planner engellerle karşılaştığında akıllıca kendi kendini düzeltir ve Navigator’a yaklaşımını dinamik olarak ayarlamasını söyler—tüm bunlar yerel olarak tarayıcınızda gerçekleşir.</em></p>
+<img src="https://github.com/user-attachments/assets/112c4385-7b03-4b81-a352-4f348093351b" width="600" alt="Shedi AI Demo GIF" />
+<p><em>Shedi AI’ın çoklu ajan sistemi, HuggingFace'i gerçek zamanlı analiz ederken; Planner engellerle karşılaştığında akıllıca kendi kendini düzeltir ve Navigator’a yaklaşımını dinamik olarak ayarlamasını söyler—tüm bunlar yerel olarak tarayıcınızda gerçekleşir.</em></p>
 </div>
 
-## 🔥Neden Nanobrowser?
+## 🔥Neden Shedi AI?
 
-OpenAI Operator'ın aylık 200 dolarlık ücretinden kurtulmak mı istiyorsunuz? **Nanobrowser**, bir Chrome uzantısı olarak size premium tarayıcı otomasyonu yetenekleri sunar ve tam kontrolü elinizde tutmanızı sağlar:
+OpenAI Operator'ın aylık 200 dolarlık ücretinden kurtulmak mı istiyorsunuz? **Shedi AI**, bir Chrome uzantısı olarak size premium tarayıcı otomasyonu yetenekleri sunar ve tam kontrolü elinizde tutmanızı sağlar:
 
 - **%100 Ücretsiz** - Abonelik ücreti veya gizli maliyetler yok. Sadece yükleyin ve kendi API anahtarlarınızı kullanın, ne kadar kullanırsanız o kadar ödersiniz.
 - **Gizlilik Odaklı** - Her şey yerel tarayıcınızda çalışır. Kimlik bilgileriniz yalnızca sizde kalır, bulut hizmetleriyle paylaşılmaz.
@@ -55,19 +54,19 @@ OpenAI Operator'ın aylık 200 dolarlık ücretinden kurtulmak mı istiyorsunuz?
 **Desteklenmeyenler:**
 - Firefox, Safari ve diğer Chromium türevleri (Opera, Arc vb.)
 
-> **Not**: Nanobrowser diğer Chromium tabanlı tarayıcılarda çalışabilir, ancak en iyi deneyim ve garantili uyumluluk için Chrome veya Edge öneriyoruz.
+> **Not**: Shedi AI diğer Chromium tabanlı tarayıcılarda çalışabilir, ancak en iyi deneyim ve garantili uyumluluk için Chrome veya Edge öneriyoruz.
 
 ## 🚀 Hızlı Başlangıç
 
 1. **Chrome Web Mağazası’ndan Kurulum** (Kararlı Sürüm):
-   * [Nanobrowser Chrome Web Mağazası sayfasına](https://chromewebstore.google.com/detail/nanobrowser/imbddededgmcgfhfpcjmijokokekbkal) gidin
+   * [Shedi AI Chrome Web Mağazası sayfasına](https://shedi.ai) gidin
    * "Chrome’a Ekle" butonuna tıklayın
    * Kurulumu onaylayın
 
 > **Önemli Not**: En yeni özellikler için aşağıdaki ["En Son Sürümü Manuel Kur"](#-en-son-sürümü-manuel-kur) kısmından kurulum yapmanızı öneririz. Chrome Web Mağazası versiyonu inceleme süreci nedeniyle gecikebilir.
 
 2. **Ajan Modellerini Yapılandırın**:
-   * Araç çubuğundaki Nanobrowser simgesine tıklayın
+   * Araç çubuğundaki Shedi AI simgesine tıklayın
    * Sağ üstteki `Ayarlar` simgesine tıklayın
    * LLM API anahtarlarınızı ekleyin
    * Farklı ajanlar (Navigator, Planner) için hangi modelin kullanılacağını seçin
@@ -77,29 +76,29 @@ OpenAI Operator'ın aylık 200 dolarlık ücretinden kurtulmak mı istiyorsunuz?
 En yeni özellikleri içeren en güncel sürümü kurmak için:
 
 1. **İndirin**
-    * Resmi Github [sürüm sayfasından](https://github.com/nanobrowser/nanobrowser/releases) en güncel `nanobrowser.zip` dosyasını indirin
+    * Resmi Github [sürüm sayfasından](https://github.com/shedi-ai/shedi/releases) en güncel `shedi-ai.zip` dosyasını indirin
 
 2. **Kurulum**:
-    * `nanobrowser.zip` dosyasını çıkarın
+    * `shedi-ai.zip` dosyasını çıkarın
     * Chrome'da `chrome://extensions/` adresine gidin
     * Sağ üstten `Geliştirici modu`nu etkinleştirin
     * Sol üstte `Paketlenmemişi yükle`ye tıklayın
-    * Çıkardığınız `nanobrowser` klasörünü seçin
+    * Çıkardığınız `shedi-ai` klasörünü seçin
 
 3. **Ajan Modellerini Yapılandırın**
-    * Nanobrowser simgesine tıklayarak yan paneli açın
+    * Shedi AI simgesine tıklayarak yan paneli açın
     * Sağ üstteki `Ayarlar` simgesine tıklayın
     * API anahtarlarınızı ekleyin
     * Ajanlara model atayın (Navigator, Planner)
 
 4. **Güncelleme**:
-    * Yeni `nanobrowser.zip` dosyasını indirin
-    * Mevcut Nanobrowser dosyalarını yenileriyle değiştirin
-    * `chrome://extensions/` sayfasına gidip Nanobrowser kartındaki yenile simgesine tıklayın
+    * Yeni `shedi-ai.zip` dosyasını indirin
+    * Mevcut Shedi AI dosyalarını yenileriyle değiştirin
+    * `chrome://extensions/` sayfasına gidip Shedi AI kartındaki yenile simgesine tıklayın
 
 ## 🛠️ Kaynaktan Derleme
 
-Nanobrowser’ı kendiniz derlemek isterseniz şu adımları izleyin:
+Shedi AI’ı kendiniz derlemek isterseniz şu adımları izleyin:
 
 1. **Gereksinimler**:
    * [Node.js](https://nodejs.org/) (v22.12.0 veya üstü)
@@ -107,8 +106,8 @@ Nanobrowser’ı kendiniz derlemek isterseniz şu adımları izleyin:
 
 2. **Depoyu Klonlayın**:
    ```bash
-   git clone https://github.com/nanobrowser/nanobrowser.git
-   cd nanobrowser
+   git clone https://github.com/shedi-ai/shedi.git
+   cd shedi-ai
    ```
 
 3. **Bağımlılıkları Yükleyin**:
@@ -136,7 +135,7 @@ Nanobrowser’ı kendiniz derlemek isterseniz şu adımları izleyin:
 
 ## 🤖 Model Seçimi
 
-Nanobrowser, her ajan için farklı LLM modelleri ayarlamanıza olanak tanır. Böylece performans ve maliyet arasında denge kurabilirsiniz. İşte önerilen yapılandırmalar:
+Shedi AI, her ajan için farklı LLM modelleri ayarlamanıza olanak tanır. Böylece performans ve maliyet arasında denge kurabilirsiniz. İşte önerilen yapılandırmalar:
 
 ### Daha Yüksek Performans
 
@@ -173,7 +172,7 @@ Nanobrowser, her ajan için farklı LLM modelleri ayarlamanıza olanak tanır. B
   * **Qwen 2.5 Coder 14B**
   * **Mistral Small 24B**
   * [Topluluktan en son test sonuçları](https://gist.github.com/maximus2600/75d60bf3df62986e2254d5166e2524cb)
-  * Diğer yerel modellerle deneyimlerinizi [Discord](https://discord.gg/NN3ABHggMK)'da paylaşabilirsiniz
+  * Diğer yerel modellerle deneyimlerinizi [X](https://x.com/shedi_ai)'da paylaşabilirsiniz
 
 * **Prompt Mühendisliği**:
 
@@ -184,7 +183,7 @@ Nanobrowser, her ajan için farklı LLM modelleri ayarlamanıza olanak tanır. B
 
 > **Not**: Ucuz yapılandırmalar daha az kararlı çıktı verebilir ve karmaşık görevlerde daha fazla yineleme gerekebilir.
 
-> **İpucu**: Kendi model yapılandırmalarınızı denemekten çekinmeyin! Harika bir kombinasyon buldunuz mu? [Discord](https://discord.gg/NN3ABHggMK)'da toplulukla paylaşın.
+> **İpucu**: Kendi model yapılandırmalarınızı denemekten çekinmeyin! Harika bir kombinasyon buldunuz mu? [X](https://x.com/shedi_ai)'da toplulukla paylaşın.
 
 ## 💡 Uygulamalı Örnekler
 
@@ -204,21 +203,21 @@ Sadece bir cümleyle gerçekleştirebileceğiniz güçlü görevlerden bazılar�
 
 ## 🛠️ Yol Haritası
 
-Nanobrowser için heyecan verici yeni özellikler geliştiriyoruz, katılmak ister misiniz?
+Shedi AI için heyecan verici yeni özellikler geliştiriyoruz, katılmak ister misiniz?
 
-Detaylı yol haritamıza ve gelecek özelliklere [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions/85) üzerinden göz atabilirsiniz.
+Detaylı yol haritamıza ve gelecek özelliklere [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions/85) üzerinden göz atabilirsiniz.
 
 ## 🤝 Katkıda Bulunun
 
-**Nanobrowser’ı daha iyi hale getirmemize yardım edin!** Her türden katkıya açığız:
+**Shedi AI’ı daha iyi hale getirmemize yardım edin!** Her türden katkıya açığız:
 
 * **Prompt & Kullanım Senaryoları Paylaşın**
 
   * [Discord sunucumuza](https://discord.gg/NN3ABHggMK) katılın
-  * Nanobrowser’ı nasıl kullandığınızı anlatın ve topluluk kütüphanemizi büyütün
+  * Shedi AI’ı nasıl kullandığınızı anlatın ve topluluk kütüphanemizi büyütün
 * **Geri Bildirim Verin**
 
-  * Nanobrowser’ı deneyin ve performansı hakkında önerilerinizi paylaşın
+  * Shedi AI’ı deneyin ve performansı hakkında önerilerinizi paylaşın
 * **Kod Katkısı Yapın**
 
   * Kod katkısı için yönergeleri [CONTRIBUTING.md](CONTRIBUTING.md) dosyasında bulabilirsiniz
@@ -230,21 +229,21 @@ Açık kaynak ve topluluk iş birliğine inanıyoruz. Tarayıcı otomasyonunun g
 
 Bir güvenlik açığı keşfederseniz, lütfen bunu açık şekilde **issue, pull request veya discussion** yoluyla paylaşmayın.
 
-Bunun yerine, [GitHub Güvenlik Danışma Sayfası](https://github.com/nanobrowser/nanobrowser/security/advisories/new) üzerinden özel olarak bildirin. Böylece açığı kamuya açıklanmadan önce düzeltme şansı buluruz.
+Bunun yerine, [GitHub Güvenlik Danışma Sayfası](https://github.com/shedi-ai/shedi/security/advisories/new) üzerinden özel olarak bildirin. Böylece açığı kamuya açıklanmadan önce düzeltme şansı buluruz.
 
-Nanobrowser’ı ve kullanıcılarını güvende tutmaya yardım ettiğiniz için teşekkür ederiz!
+Shedi AI’ı ve kullanıcılarını güvende tutmaya yardım ettiğiniz için teşekkür ederiz!
 
 ## 💬 Topluluk
 
 Giderek büyüyen geliştirici ve kullanıcı topluluğumuza katılın:
 
-* [Discord](https://discord.gg/NN3ABHggMK) – Ekip ve toplulukla sohbet edin
-* [Twitter](https://x.com/nanobrowser_ai) – Güncellemeler ve duyurular
-* [GitHub Discussions](https://github.com/nanobrowser/nanobrowser/discussions) – Fikirlerinizi paylaşın ve sorular sorun
+* [X](https://x.com/shedi_ai) – Ekip ve toplulukla sohbet edin
+* [Twitter](https://x.com/shedi_ai) – Güncellemeler ve duyurular
+* [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) – Fikirlerinizi paylaşın ve sorular sorun
 
 ## 👏 Teşekkürler
 
-Nanobrowser, şu harika açık kaynak projeler üzerine inşa edilmiştir:
+Shedi AI, şu harika açık kaynak projeler üzerine inşa edilmiştir:
 
 * [Browser Use](https://github.com/browser-use/browser-use)
 * [Puppeteer](https://github.com/EmergenceAI/Agent-E)
@@ -257,9 +256,9 @@ Tüm yaratıcılarına ve katkıda bulunanlara büyük teşekkürler!
 
 Bu proje Apache License 2.0 ile lisanslanmıştır – detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
-Sevgiyle yapıldı ❤️ Nanobrowser Ekibi tarafından.
+Sevgiyle yapıldı ❤️ Shedi AI Ekibi tarafından.
 
-Nanobrowser’ı sevdiniz mi? Bize bir yıldız 🌟 verin ve topluluğumuza katılın: [Discord](https://discord.gg/NN3ABHggMK) | [X](https://x.com/nanobrowser_ai)
+Shedi AI’ı sevdiniz mi? Bize bir yıldız 🌟 verin ve topluluğumuza katılın: [X](https://x.com/shedi_ai) | [X](https://x.com/shedi_ai)
 
 ## 🔗 Diğer Ürünlerimiz
 

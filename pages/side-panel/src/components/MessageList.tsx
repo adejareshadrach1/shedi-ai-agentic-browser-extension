@@ -7,9 +7,11 @@ interface MessageListProps {
   isDarkMode?: boolean;
 }
 
+const PROGRESS_MESSAGE = 'Showing progress...';
+
 export default memo(function MessageList({ messages, isDarkMode = false }: MessageListProps) {
   return (
-    <div className="max-w-full space-y-4">
+    <div className="flex flex-col gap-2.5">
       {messages.map((message, index) => (
         <MessageBlock
           key={`${message.actor}-${message.timestamp}-${index}`}
@@ -33,48 +35,66 @@ function MessageBlock({ message, isSameActor, isDarkMode = false }: MessageBlock
     console.error('No actor found');
     return <div />;
   }
+
   const actor = ACTOR_PROFILES[message.actor as keyof typeof ACTOR_PROFILES];
-  const isProgress = message.content === 'Showing progress...';
+  const isProgress = message.content === PROGRESS_MESSAGE;
+  const isUser = message.actor === 'user';
+
+  if (isUser) {
+    return (
+      <div className="flex justify-end">
+        <div className="max-w-[85%] rounded-2xl rounded-br-md bg-gradient-to-br from-sky-500 to-blue-600 px-3.5 py-2 text-sm leading-relaxed text-white shadow-lg shadow-sky-500/20">
+          <div className="whitespace-pre-wrap break-words">{message.content}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`flex max-w-full gap-3 ${
-        !isSameActor
-          ? `mt-4 border-t ${isDarkMode ? 'border-sky-800/50' : 'border-sky-200/50'} pt-4 first:mt-0 first:border-t-0 first:pt-0`
-          : ''
-      }`}>
-      {!isSameActor && (
-        <div
-          className="flex size-8 shrink-0 items-center justify-center rounded-full"
-          style={{ backgroundColor: actor.iconBackground }}>
-          <img src={actor.icon} alt={actor.name} className="size-6" />
-        </div>
-      )}
-      {isSameActor && <div className="w-8" />}
+    <div className="flex gap-2.5">
+      <div className="w-7 shrink-0">
+        {!isSameActor && (
+          <div
+            className="flex size-7 items-center justify-center rounded-full shadow-sm"
+            style={{ backgroundColor: actor.iconBackground }}>
+            <img src={actor.icon} alt={actor.name} className="size-4" />
+          </div>
+        )}
+      </div>
 
       <div className="min-w-0 flex-1">
         {!isSameActor && (
-          <div className={`mb-1 text-sm font-semibold ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>
-            {actor.name}
+          <div className="mb-1 flex items-baseline gap-2">
+            <span className={`text-xs font-semibold ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+              {actor.name}
+            </span>
+            {!isProgress && (
+              <span className={`text-[10px] ${isDarkMode ? 'text-slate-500' : 'text-slate-400'}`}>
+                {formatTimestamp(message.timestamp)}
+              </span>
+            )}
           </div>
         )}
 
-        <div className="space-y-0.5">
-          <div className={`whitespace-pre-wrap break-words text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            {isProgress ? (
-              <div className={`h-1 overflow-hidden rounded ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
-                <div className="h-full animate-progress bg-blue-500" />
-              </div>
-            ) : (
-              message.content
-            )}
-          </div>
-          {!isProgress && (
-            <div className={`text-right text-xs ${isDarkMode ? 'text-gray-500' : 'text-gray-300'}`}>
-              {formatTimestamp(message.timestamp)}
+        {isProgress ? (
+          <div className="flex items-center gap-2 py-1">
+            <div className={`h-1 flex-1 overflow-hidden rounded-full ${isDarkMode ? 'bg-slate-700' : 'bg-slate-200'}`}>
+              <div className="h-full w-1/3 animate-progress rounded-full bg-gradient-to-r from-sky-400 to-blue-500" />
             </div>
-          )}
-        </div>
+            <span className={`shrink-0 text-[10px] font-medium ${isDarkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+              Working
+            </span>
+          </div>
+        ) : (
+          <div
+            className={`rounded-2xl rounded-tl-md border px-3 py-2 text-sm leading-relaxed ${
+              isDarkMode
+                ? 'border-white/5 bg-slate-900/70 text-slate-300'
+                : 'border-slate-200/70 bg-white text-slate-700 shadow-sm'
+            }`}>
+            <div className="whitespace-pre-wrap break-words">{message.content}</div>
+          </div>
+        )}
       </div>
     </div>
   );
