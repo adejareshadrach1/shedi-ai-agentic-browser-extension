@@ -16,7 +16,7 @@ const defaultFavoritePrompts = [
   {
     title: '🌟 Star us on GitHub!',
     content:
-      "Open the Shedi AI repository at https://github.com/shedi-ai/shedi and check if you've already starred it. If not, please give it a star!",
+      "Open the Shedi AI repository at https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension and check if you've already starred it. If not, please give it a star!",
   },
 ];
 

@@ -241,6 +241,8 @@ Join our growing community of developers and users:
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
-Made with ❤️ by **Adebola Shadrach Adejare**.Like Shedi AI? Give us a star 🌟 and follow us on [X](https://x.com/shedi_ai)
+Made with ❤️ by **Adebola Shadrach Adejare**.
+
+Like Shedi AI? Give us a star 🌟 and follow us on [X](https://x.com/shedi_ai)
 
 
