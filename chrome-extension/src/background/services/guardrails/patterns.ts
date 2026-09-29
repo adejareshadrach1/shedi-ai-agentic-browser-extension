@@ -43,14 +43,16 @@ export const SECURITY_PATTERNS: SecurityPattern[] = [
     description: 'Reference to system prompt',
     replacement: '[BLOCKED_SYSTEM_REFERENCE]',
   },
+  // Match both current (shedi) and legacy (nano) tag spellings so injected
+  // fakes are caught even in content produced before the rename.
   {
-    pattern: /\bnano[-_ ]+untrusted[-_ ]+content\b/gi,
+    pattern: /\b(?:shedi|nano)[-_ ]+untrusted[-_ ]+content\b/gi,
     type: ThreatType.PROMPT_INJECTION,
     description: 'Attempt to fake untrusted content tags',
     replacement: '',
   },
   {
-    pattern: /\bnano[-_ ]+user[-_ ]+request\b/gi,
+    pattern: /\b(?:shedi|nano)[-_ ]+user[-_ ]+request\b/gi,
     type: ThreatType.PROMPT_INJECTION,
     description: 'Attempt to fake user request tags',
     replacement: '',
@@ -62,7 +64,7 @@ export const SECURITY_PATTERNS: SecurityPattern[] = [
     replacement: '',
   },
   {
-    pattern: /\bnano[-_]+attached[-_]+files\b/gi,
+    pattern: /\b(?:shedi|nano)[-_]+attached[-_]+files\b/gi,
     type: ThreatType.PROMPT_INJECTION,
     description: 'Reference to attached files',
     replacement: '',
@@ -141,10 +143,10 @@ export function getPatterns(strict: boolean = false): SecurityPattern[] {
  * Tags to preserve during sanitization (wrapped content tags)
  */
 export const PRESERVED_TAGS = [
-  'nano_untrusted_content',
-  'nano_user_request',
-  'nano_attached_files',
-  'nano_file_content',
+  'shedi_untrusted_content',
+  'shedi_user_request',
+  'shedi_attached_files',
+  'shedi_file_content',
 ];
 
 /**
