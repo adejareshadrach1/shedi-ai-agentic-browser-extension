@@ -1,6 +1,6 @@
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
 [![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
@@ -70,7 +70,7 @@ Shedi AI 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化工�
 若要取得包含所有最新功能的版本：
 
 1. **下載**
-    * 從官方 GitHub 的 [版本頁面](https://github.com/shedi-ai/shedi/releases) 下載最新的 `shedi-ai.zip` 檔案。
+    * 從官方 GitHub 的 [版本頁面](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/releases) 下載最新的 `shedi-ai.zip` 檔案。
 
 2. **安裝**：
     * 解壓縮 `shedi-ai.zip`。
@@ -100,8 +100,8 @@ Shedi AI 是一款在瀏覽器中執行的開放原始碼 AI 網頁自動化工�
 
 2. **複製儲存庫**：
    ```bash
-   git clone https://github.com/shedi-ai/shedi.git
-   cd shedi-ai
+   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension.git
+   cd shedi-ai-agentic-browser-extension
    ```
 
 3. **安裝相依套件**：
@@ -182,17 +182,15 @@ Shedi AI 允許您為每個代理設定不同的 LLM 模型，以平衡效能與
 
 我們正積極開發 Shedi AI，未來將有更多令人期待的功能推出，歡迎加入我們！
 
-請至我們的 [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions/85) 查看詳細的發展藍圖與即將推出的功能。
+請至我們的 [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions/85) 查看詳細的發展藍圖與即將推出的功能。
 
 ## 🤝 如何貢獻
 
 **我們需要您的幫助，讓 Shedi AI 變得更好！** 我們歡迎各種形式的貢獻：
 
 *  **分享提示詞與使用案例**
-   * 加入我們的 [Discord 伺服器](https://discord.gg/NN3ABHggMK)。
    * 分享您如何使用 Shedi AI，協助我們建立實用的提示詞與實際應用案例資料庫。
 *  **提供回饋意見**
-   * 試用 Shedi AI，並在我們的 [Discord 伺服器](https://discord.gg/NN3ABHggMK) 上提供效能回饋或改進建議。
 * **貢獻程式碼**
    * 請參閱我們的 [CONTRIBUTING.md](CONTRIBUTING.md)，瞭解如何為本專案貢獻程式碼的指南。
    * 針對錯誤修復、新功能或文件改進，提出 Pull Request。
@@ -205,7 +203,7 @@ Shedi AI 允許您為每個代理設定不同的 LLM 模型，以平衡效能與
 
 如果您發現安全漏洞，請**不要**透過 Issues、Pull Request 或 Discussions 公開揭露。
 
-請建立一個 [GitHub Security Advisory](https://github.com/shedi-ai/shedi/security/advisories/new) 來負責任地回報此漏洞。這讓我們能在漏洞被公開之前解決問題。
+請建立一個 [GitHub Security Advisory](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/security/advisories/new) 來負責任地回報此漏洞。這讓我們能在漏洞被公開之前解決問題。
 
 我們感謝您協助維護 Shedi AI 及其使用者的安全！
 
@@ -215,7 +213,7 @@ Shedi AI 允許您為每個代理設定不同的 LLM 模型，以平衡效能與
 
 - [X](https://x.com/shedi_ai) - 與團隊及社群成員交流
 - [Twitter](https://x.com/shedi_ai) - 追蹤最新的更新與公告
-- [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) - 分享您的想法並提出問題
+- [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions) - 分享您的想法並提出問題
 
 ## 👏 致謝
 

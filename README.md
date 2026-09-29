@@ -12,6 +12,27 @@ Shedi AI Agentic Browser Extension is an open-source AI web automation tool that
 
 Created, designed, and developed by **Adebola Shadrach Adejare**.
 
+## 📖 Project Background
+
+Shedi AI is a personal project by Adebola Shadrach Adejare. It extends the open-source
+[nanobrowser](https://github.com/nanobrowser/nanobrowser) engine (Apache-2.0) into its own product,
+with a substantial re-engineering pass designed and implemented solo:
+
+- **Resilient model selection** — display-label names are rejected at write time and self-heal on
+  read (mapped back to real model IDs or safe defaults), ending the `404 model_not_found` task
+  failures; retired model IDs are migrated automatically on every read
+- **Live model discovery** — model lists refresh straight from each provider's own `/models`
+  endpoint, including OpenRouter, Groq, Cerebras and Ollama
+- **Clean Engine visuals** — the Set-of-Mark numbered boxes are painted only for the vision
+  screenshot frame and stripped immediately after, so users see a clean page while the LLM keeps
+  its labeled blueprint
+- **Ghost pointer** — a glowing dot with a pulsing neon halo glides between targets with
+  cubic-bezier easing and a ripple pulse on click, plus an `animatePointerTo` scripting API
+- **Premium side panel** — `#0B0F19` dark theme, glowing agent status badge, and a human-readable
+  progress timeline
+- **Reliability work** — 3-minute per-call LLM timeouts, vision-for-planner honored from settings,
+  Azure deployment-name handling, and expanded unit tests for the model-name and guardrail layers
+
 
 ⬇️ Shedi AI is not published on the Chrome Web Store. Build it from this checkout using the source instructions below.
 
@@ -190,10 +211,8 @@ Check out our detailed roadmap and upcoming features in our [GitHub Discussions]
 **We need your help to make Shedi AI even better!**  Contributions of all kinds are welcome:
 
 *  **Share Prompts & Use Cases** 
-   * Join our [Discord server](https://discord.gg/NN3ABHggMK).
    * share how you're using Shedi AI.  Help us build a library of useful prompts and real-world use cases.
 *  **Provide Feedback** 
-   * Try Shedi AI and give us feedback on its performance or suggest improvements in our [Discord server](https://discord.gg/NN3ABHggMK).
 * **Contribute Code**
    * Check out our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute code to the project.
    * Submit pull requests for bug fixes, features, or documentation improvements.

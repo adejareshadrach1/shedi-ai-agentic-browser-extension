@@ -1,6 +1,6 @@
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
 [![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
@@ -67,7 +67,7 @@ OpenAI Operator'ın aylık 200 dolarlık ücretinden kurtulmak mı istiyorsunuz?
 En yeni özellikleri içeren en güncel sürümü kurmak için:
 
 1. **İndirin**
-    * Resmi Github [sürüm sayfasından](https://github.com/shedi-ai/shedi/releases) en güncel `shedi-ai.zip` dosyasını indirin
+    * Resmi Github [sürüm sayfasından](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/releases) en güncel `shedi-ai.zip` dosyasını indirin
 
 2. **Kurulum**:
     * `shedi-ai.zip` dosyasını çıkarın
@@ -97,8 +97,8 @@ Shedi AI’ı kendiniz derlemek isterseniz şu adımları izleyin:
 
 2. **Depoyu Klonlayın**:
    ```bash
-   git clone https://github.com/shedi-ai/shedi.git
-   cd shedi-ai
+   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension.git
+   cd shedi-ai-agentic-browser-extension
    ```
 
 3. **Bağımlılıkları Yükleyin**:
@@ -196,7 +196,7 @@ Sadece bir cümleyle gerçekleştirebileceğiniz güçlü görevlerden bazılar�
 
 Shedi AI için heyecan verici yeni özellikler geliştiriyoruz, katılmak ister misiniz?
 
-Detaylı yol haritamıza ve gelecek özelliklere [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions/85) üzerinden göz atabilirsiniz.
+Detaylı yol haritamıza ve gelecek özelliklere [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions/85) üzerinden göz atabilirsiniz.
 
 ## 🤝 Katkıda Bulunun
 
@@ -204,7 +204,6 @@ Detaylı yol haritamıza ve gelecek özelliklere [GitHub Discussions](https://gi
 
 * **Prompt & Kullanım Senaryoları Paylaşın**
 
-  * [Discord sunucumuza](https://discord.gg/NN3ABHggMK) katılın
   * Shedi AI’ı nasıl kullandığınızı anlatın ve topluluk kütüphanemizi büyütün
 * **Geri Bildirim Verin**
 
@@ -220,7 +219,7 @@ Açık kaynak ve topluluk iş birliğine inanıyoruz. Tarayıcı otomasyonunun g
 
 Bir güvenlik açığı keşfederseniz, lütfen bunu açık şekilde **issue, pull request veya discussion** yoluyla paylaşmayın.
 
-Bunun yerine, [GitHub Güvenlik Danışma Sayfası](https://github.com/shedi-ai/shedi/security/advisories/new) üzerinden özel olarak bildirin. Böylece açığı kamuya açıklanmadan önce düzeltme şansı buluruz.
+Bunun yerine, [GitHub Güvenlik Danışma Sayfası](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/security/advisories/new) üzerinden özel olarak bildirin. Böylece açığı kamuya açıklanmadan önce düzeltme şansı buluruz.
 
 Shedi AI’ı ve kullanıcılarını güvende tutmaya yardım ettiğiniz için teşekkür ederiz!
 
@@ -230,7 +229,7 @@ Giderek büyüyen geliştirici ve kullanıcı topluluğumuza katılın:
 
 * [X](https://x.com/shedi_ai) – Ekip ve toplulukla sohbet edin
 * [Twitter](https://x.com/shedi_ai) – Güncellemeler ve duyurular
-* [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) – Fikirlerinizi paylaşın ve sorular sorun
+* [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions) – Fikirlerinizi paylaşın ve sorular sorun
 
 ## 👏 Teşekkürler
 

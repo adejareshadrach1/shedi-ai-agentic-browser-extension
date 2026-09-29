@@ -1,6 +1,6 @@
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shedi-ai/shedi)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension)
 [![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/shedi_ai)
 [![Website](https://img.shields.io/badge/Website-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white)](https://shedi.ai)
 
@@ -58,7 +58,7 @@ Shedi AI es una herramienta de automatización web con IA que se ejecuta en tu n
 Para obtener la versión más reciente con todas las funciones nuevas:
 
 1. **Descargar**
-    * Descarga el archivo `shedi-ai.zip` más reciente desde la [página de lanzamientos](https://github.com/shedi-ai/shedi/releases) oficial en GitHub.
+    * Descarga el archivo `shedi-ai.zip` más reciente desde la [página de lanzamientos](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/releases) oficial en GitHub.
 
 2. **Instalar**:
     * Extrae el archivo `shedi-ai.zip`.
@@ -88,8 +88,8 @@ Si prefieres compilar Shedi AI por ti mismo, sigue estos pasos:
 
 2. **Clonar el Repositorio**:
    ```bash
-   git clone https://github.com/shedi-ai/shedi.git
-   cd shedi-ai
+   git clone https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension.git
+   cd shedi-ai-agentic-browser-extension
    ```
 
 3. **Instalar Dependencias**:
@@ -170,17 +170,15 @@ Aquí tienes algunas tareas poderosas que puedes realizar con solo una frase:
 
 Estamos desarrollando activamente Shedi AI con características emocionantes en el horizonte. ¡Te invitamos a unirte!
 
-Consulta nuestra hoja de ruta detallada y las características próximas en nuestras [Discusiones de GitHub](https://github.com/shedi-ai/shedi/discussions/85). 
+Consulta nuestra hoja de ruta detallada y las características próximas en nuestras [Discusiones de GitHub](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions/85). 
 
 ## 🤝 Contribuciones
 
 **Necesitamos tu ayuda para hacer que Shedi AI sea aún mejor!**  Se aceptan contribuciones de todo tipo:
 
 *  **Comparte Prompts y Casos de Uso** 
-   * Únete a nuestro [servidor de Discord](https://discord.gg/NN3ABHggMK).
    * Comparte cómo estás usando Shedi AI. Ayúdanos a construir una biblioteca de prompts útiles y casos de uso reales.
 *  **Proporciona Retroalimentación** 
-   * Prueba Shedi AI y danos tu opinión sobre su rendimiento o sugiere mejoras en nuestro [servidor de Discord](https://discord.gg/NN3ABHggMK).
 * **Contribuye con Código**
    * Consulta nuestro [CONTRIBUTING.md](CONTRIBUTING.md) para conocer las pautas sobre cómo contribuir con código al proyecto.
    * Envía pull requests para corrección de errores, funciones, o mejoras en la documentación.
@@ -193,7 +191,7 @@ Creemos en el poder del código abierto y la colaboración comunitaria. ¡Únete
 
 Si descubres una vulnerabilidad de seguridad, por favor **NO** la divulgues públicamente a través de issues, pull requests, o discusiones.
 
-En su lugar, por favor crea un [GitHub Security Advisory](https://github.com/shedi-ai/shedi/security/advisories/new) para reportar la vulnerabilidad de forma responsable. Esto nos permite abordar el problema antes de que se divulgue públicamente.
+En su lugar, por favor crea un [GitHub Security Advisory](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/security/advisories/new) para reportar la vulnerabilidad de forma responsable. Esto nos permite abordar el problema antes de que se divulgue públicamente.
 
 ¡Agradecemos tu ayuda para mantener Shedi AI y sus usuarios seguros!
 
@@ -203,7 +201,7 @@ En su lugar, por favor crea un [GitHub Security Advisory](https://github.com/she
 
 - [X](https://x.com/shedi_ai) - Habla con el equipo y la comunidad
 - [Twitter](https://x.com/shedi_ai) - Síguenos para actualizaciones y anuncios
-- [GitHub Discussions](https://github.com/shedi-ai/shedi/discussions) - Comparte ideas y realiza preguntas
+- [GitHub Discussions](https://github.com/adejareshadrach1/shedi-ai-agentic-browser-extension/discussions) - Comparte ideas y realiza preguntas
 
 ## 👏 Agradecimientos
 
